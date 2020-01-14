@@ -1,5 +1,4 @@
-DROP DATABASE IF EXISTS friendApp_db;
-CREATE DATABASE friendApp_db;
-USE friendApp_db;
-CREATE TABLE sched;
-
+-- Drops the blogger if it exists currently --
+DROP DATABASE IF EXISTS schedule_db;
+-- Creates the "blogger" database --
+CREATE DATABASE schedule_db;
