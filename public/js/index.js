@@ -22,6 +22,7 @@ var API = {
       type: "GET"
     });
   },
+  // SELECT name FROM schedule_db/week WHERE (Mon-Fri columns) = (userColumns);
   deleteExample: function(id) {
     return $.ajax({
       url: "api/examples/" + id,
