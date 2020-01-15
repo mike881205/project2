@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    let Day_Date = sequelize.define("Day_Date", {
+    let Dates = sequelize.define("Dates", {
         day1: {
             type: DataTypes.INTEGER,
             flag: {allowNull: false}
@@ -30,5 +30,5 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    return Day_Date;
+    return Dates;
 };

@@ -1,29 +1,27 @@
+// Requiring our models
 var db = require("../models");
 
+// Routes
+// =============================================================
 module.exports = function(app) {
-  app.get("/api/users", function(req, res) {
-    db.Users.findAll({
-      include: [db.Availability]
-    }).then(function(dbUsers) {
-      res.json(dbUsers);
-    });
-  });
 
-  app.get("/api/users/:id", function(req, res) {
-    db.Users.findOne({
-      where: {
-        id: req.params.id
-      },
-      include: [db.Availability]
-    }).then(function(dbUsers) {
+  // GET route for getting all of the users
+  app.get("/api/users", function(req, res) {
+    db.Users.findAll({}).then(function(dbUsers) {
       res.json(dbUsers);
     });
   });
 
   app.post("/api/users", function(req, res) {
-    db.Users.create(req.body).then(function(dbUsers) {
+    db.Users.create({
+      user: req.body.user,
+      password: req.body.password
+    }).then(function(dbUsers) {
       res.json(dbUsers);
-    });
+    })
+      .catch(function(err) {
+        res.json(err);
+      });
   });
 
   app.delete("/api/users/:id", function(req, res) {
@@ -34,6 +32,7 @@ module.exports = function(app) {
     }).then(function(dbUsers) {
       res.json(dbUsers);
     });
+
   });
 
 };
