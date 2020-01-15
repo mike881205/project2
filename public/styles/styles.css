@@ -17,12 +17,12 @@ body {
     3px 3px 5px rgba(184, 184, 184, 0.664);
   border-radius: 15%;
   height: 90%;
-  width: 12%;
+  width: 10%;
   display: inline-block;
   margin: 0.98vw;
 }
 /* should change this to new class that can be controlled with a jQuery .addClass() */
-.calendar-day:active {
+.calendar-day-free {
   box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.733),
     inset 3px 3px 5px rgba(184, 184, 184, 0.664);
 }
@@ -51,4 +51,22 @@ body {
   top: 30%;
   font-family: "Montserrat", sans-serif;
   font-size: 2vw;
+}
+#edit-btn{
+  position: relative;
+  display: inline-block;
+  top: 35%;
+  margin-left: 3vw;
+  padding: 10px 20px;
+  background-color: rgb(235, 235, 235);
+  box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.733),
+    3px 3px 5px rgba(184, 184, 184, 0.664);
+    text-align: center;
+  border-radius: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5vw;
+}
+#edit-btn:active{
+  box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.733),
+  inset 3px 3px 5px rgba(184, 184, 184, 0.664);
 }
