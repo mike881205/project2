@@ -42,11 +42,8 @@ module.exports = function (app) {
             day5: req.body.day5,
             day6: req.body.day6,
             day7: req.body.day7
-        }, {
-            where: {
-                id: req.body.id
-            }
-        }).then(function (dbDates) {
+        }
+        ).then(function (dbDates) {
             res.json(dbDates);
         })
             .catch(function (err) {
