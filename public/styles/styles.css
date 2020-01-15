@@ -1,3 +1,50 @@
-.list-group-item {
-  line-height: 2.5;
+body{
+  background-image: linear-gradient(rgb(247, 247, 247), rgb(235, 235, 235));
+  height: 100vh;
+}
+.calendar-container{
+  box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.603), inset 3px 3px 5px rgba(221, 221, 221, 0.603);
+  margin-top: 10vh;
+  height: 30vh;
+  width: 98vw;
+  border-radius: 30px;
+}
+/* not responsive yet, not sure why */
+.calendar-day{
+  margin-top: 10vh;
+  box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.733), 3px 3px 5px rgba(184, 184, 184, 0.664);
+  border-radius: 15%;
+  height: 90%;
+  width: 12%;
+  display: inline-block;
+  margin: .98vw;
+}
+/* should change this to new class that can be controlled with a jQuery .addClass() */
+.calendar-day:active{
+  box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.733), inset 3px 3px 5px rgba(184, 184, 184, 0.664);
+}
+.week-day{
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2vw;
+  color: rgb(59, 59, 59);
+}
+.free-friend{
+  border-radius: 30px;
+  width: 90vw;
+  height: 20vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vh;
+  box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.603), inset 3px 3px 5px rgba(212, 212, 212, 0.603);
+  text-align: center;
+  background-color: rgb(235, 235, 235);
+}
+#free-friend-text{
+  text-align: center;
+  position: relative;
+  top: 30%;
+  font-family: 'Montserrat', sans-serif;
+    font-size: 2vw;
 }
