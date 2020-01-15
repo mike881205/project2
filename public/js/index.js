@@ -1,3 +1,4 @@
+const axios = require('axios');
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
@@ -6,6 +7,9 @@ var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
+  getEvents: function(){
+    return axios.get("https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=c7koBylzet9Zf4hdII9P5b2EwyHtYl4O")
+  },
   saveExample: function(example) {
     return $.ajax({
       headers: {
