@@ -1,5 +1,13 @@
 module.exports = function (sequelize, DataTypes) {
     let Availability = sequelize.define("Availability", {
+        year: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        week: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         day1: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,

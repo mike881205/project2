@@ -37,6 +37,8 @@ module.exports = function (app) {
   app.post("/api/availability", function (req, res) {
 
     db.availability.create({
+      year: req.body.year,
+      week: req.body.week,
       day1: req.body.day1,
       day2: req.body.day2,
       day3: req.body.day3,
