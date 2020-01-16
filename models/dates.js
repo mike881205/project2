@@ -1,30 +1,38 @@
 module.exports = function (sequelize, DataTypes) {
     let Dates = sequelize.define("Dates", {
-        day1: {
+        year: {
             type: DataTypes.INTEGER,
             flag: {allowNull: false}
         },
-        day2: {
+        week: {
             type: DataTypes.INTEGER,
             flag: {allowNull: false}
         },
-        day3: {
+        day1_date: {
             type: DataTypes.INTEGER,
             flag: {allowNull: false}
         },
-        day4: {
+        day2_date: {
             type: DataTypes.INTEGER,
             flag: {allowNull: false}
         },
-        day5: {
+        day3_date: {
             type: DataTypes.INTEGER,
             flag: {allowNull: false}
         },
-        day6: {
+        day4_date: {
             type: DataTypes.INTEGER,
             flag: {allowNull: false}
         },
-        day7: {
+        day5_date: {
+            type: DataTypes.INTEGER,
+            flag: {allowNull: false}
+        },
+        day6_date: {
+            type: DataTypes.INTEGER,
+            flag: {allowNull: false}
+        },
+        day7_date: {
             type: DataTypes.INTEGER,
             flag: {allowNull: false}
         }

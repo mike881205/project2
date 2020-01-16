@@ -16,6 +16,8 @@ module.exports = function (app) {
     app.post("/api/dates", function (req, res) {
 
         db.Dates.create({
+            year: req.body.year,
+            week: req.body.week,
             day1: req.body.day1,
             day2: req.body.day2,
             day3: req.body.day3,
@@ -35,6 +37,8 @@ module.exports = function (app) {
     app.put("/api/dates", function (req, res) {
 
         db.Dates.update({
+            year: req.body.year,
+            week: req.body.week,
             day1: req.body.day1,
             day2: req.body.day2,
             day3: req.body.day3,
