@@ -1,5 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
 
-    <div class="container-fluid">
+    <title>CanWeHang?</title>
+  </head>
+  <body>
+    
+    <div class="container-fluid bg">
+      <div class="row">
+        <h1 id="main-title">Your Schedule:</h1>
+      </div>
       <div class="row">
         <div class="col-sm-12">
           <!-- CALENDAR SECTION -->
@@ -25,11 +54,11 @@
             <div class="calendar-day" id="sun" is-available="false" value="7">
               <p class="week-day">Sun</p>
             </div>
-            <div id="edit-btn"><p>EDIT</p></div>
+            <div id="edit-btn">Edit</div>
           </div>
         </div>
       </div>
-      <script src="../public/js/editAvail.js"></script>
+      <script src="js/editAvail.js"></script>
       <!-- IS ANYONE FREE ON THIS DAY -->
       <div class="row">
         <div class="col-sm-12">
@@ -38,4 +67,10 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="night-toggle"></div>
+      </div>
     </div>
+    <script src="js/nightToggle.js"></script>
+  </body>
+</html>
