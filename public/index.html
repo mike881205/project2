@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="test.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="styles/styles.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -16,39 +21,45 @@
       rel="stylesheet"
     />
 
-    <title>Test Doc</title>
+    <title>CanWeHang?</title>
   </head>
   <body>
-    <div class="container-fluid">
+    
+    <div class="container-fluid bg">
+      <div class="row">
+        <h1 id="main-title">Your Schedule:</h1>
+      </div>
       <div class="row">
         <div class="col-sm-12">
-<!-- CALENDAR SECTION -->
+          <!-- CALENDAR SECTION -->
           <div class="calendar-container">
-            <div class="calendar-day" id="mon" value="1">
+            <div class="calendar-day" id="mon" is-available="false" value="1">
               <p class="week-day">Mon</p>
             </div>
-            <div class="calendar-day" id="tue" value="2">
+            <div class="calendar-day" id="tue" is-available="false" value="2">
               <p class="week-day">Tue</p>
             </div>
-            <div class="calendar-day" id="wed" value="3">
+            <div class="calendar-day" id="wed" is-available="false" value="3">
               <p class="week-day">Wed</p>
             </div>
-            <div class="calendar-day" id="thu" value="4">
+            <div class="calendar-day" id="thu" is-available="false" value="4">
               <p class="week-day">Thu</p>
             </div>
-            <div class="calendar-day" id="fri" value="5">
+            <div class="calendar-day" id="fri" is-available="false" value="5">
               <p class="week-day">Fri</p>
             </div>
-            <div class="calendar-day" id="sat" value="6">
+            <div class="calendar-day" id="sat" is-available="false" value="6">
               <p class="week-day">Sat</p>
             </div>
-            <div class="calendar-day" id="sun" value="7">
+            <div class="calendar-day" id="sun" is-available="false" value="7">
               <p class="week-day">Sun</p>
             </div>
+            <div id="edit-btn">Edit</div>
           </div>
         </div>
       </div>
-<!-- IS ANYONE FREE ON THIS DAY -->
+      <script src="js/editAvail.js"></script>
+      <!-- IS ANYONE FREE ON THIS DAY -->
       <div class="row">
         <div class="col-sm-12">
           <div class="free-friend">
@@ -56,6 +67,10 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="night-toggle"></div>
+      </div>
     </div>
+    <script src="js/nightToggle.js"></script>
   </body>
 </html>
