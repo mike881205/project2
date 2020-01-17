@@ -11,37 +11,37 @@ module.exports = function (sequelize, DataTypes) {
         day1: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
-            flag: { allowNull: false }
+            allowNull: false
         },
         day2: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
-            flag: { allowNull: false }
+            allowNull: false
         },
         day3: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
-            flag: { allowNull: false }
+            allowNull: false
         },
         day4: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
-            flag: { allowNull: false }
+            allowNull: false
         },
         day5: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
-            flag: { allowNull: false }
+            allowNull: false
         },
         day6: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
-            flag: { allowNull: false }
+            allowNull: false
         },
         day7: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
-            flag: { allowNull: false }
+            allowNull: false
         }
     });
 
