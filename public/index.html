@@ -1,76 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="styles/styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
-      rel="stylesheet"
-    />
 
-    <title>CanWeHang?</title>
-  </head>
-  <body>
-    
-    <div class="container-fluid bg">
-      <div class="row">
-        <h1 id="main-title">Your Schedule:</h1>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <!-- CALENDAR SECTION -->
-          <div class="calendar-container">
-            <div class="calendar-day" id="mon" is-available="false" value="1">
-              <p class="week-day">Mon</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
+
+  <title>CanWeHang?</title>
+</head>
+
+<body>
+  <script>
+    $(window).on('load', function () {
+      $('#modalLRForm').modal('show');
+    });
+  </script>
+  <!--Modal: Login / Register Form-->
+  <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <!--Content-->
+      <div class="modal-content">
+
+        <!--Modal cascading tabs-->
+        <div class="modal-c-tabs">
+
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
+                Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user-plus mr-1"></i>
+                Register</a>
+            </li>
+          </ul>
+
+          <!-- Tab panels -->
+          <div class="tab-content">
+            <!--Panel 7-->
+            <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+              <!--Body-->
+              <div class="modal-body mb-1">
+                <div class="md-form form-sm mb-5">
+                  <i class="fas fa-envelope prefix"></i>
+                  <input type="text" id="modalLRInput10" class="form-control form-control-sm validate">
+                  <label data-error="wrong" data-success="right" for="modalLRInput10">Your Username</label>
+                </div>
+
+                <div class="md-form form-sm mb-4">
+                  <i class="fas fa-lock prefix"></i>
+                  <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
+                  <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
+                </div>
+                <div class="text-center mt-2">
+                  <button class="btn btn-info" id="loginSubmit" type="submit" value="Submit">Log in <i
+                      class="fas fa-sign-in ml-1"></i></button>
+                </div>
+              </div>
+
             </div>
-            <div class="calendar-day" id="tue" is-available="false" value="2">
-              <p class="week-day">Tue</p>
+            <!--/.Panel 7-->
+
+            <!--Panel 8-->
+            <div class="tab-pane fade" id="panel8" role="tabpanel">
+
+              <!--Body-->
+              <div class="modal-body">
+                <div class="md-form form-sm mb-5">
+                  <i class="fas fa-envelope prefix"></i>
+                  <input type="text" id="modalLRInput12" class="form-control form-control-sm validate">
+                  <label data-error="wrong" data-success="right" for="modalLRInput12">Create Username</label>
+                </div>
+
+                <div class="md-form form-sm mb-5">
+                  <i class="fas fa-lock prefix"></i>
+                  <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
+                  <label data-error="wrong" data-success="right" for="modalLRInput13">Create Password</label>
+                </div>
+
+
+                <div class="text-center form-sm mt-2">
+                  <button class="btn btn-info" id="signup">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+                </div>
+
+              </div>
             </div>
-            <div class="calendar-day" id="wed" is-available="false" value="3">
-              <p class="week-day">Wed</p>
-            </div>
-            <div class="calendar-day" id="thu" is-available="false" value="4">
-              <p class="week-day">Thu</p>
-            </div>
-            <div class="calendar-day" id="fri" is-available="false" value="5">
-              <p class="week-day">Fri</p>
-            </div>
-            <div class="calendar-day" id="sat" is-available="false" value="6">
-              <p class="week-day">Sat</p>
-            </div>
-            <div class="calendar-day" id="sun" is-available="false" value="7">
-              <p class="week-day">Sun</p>
-            </div>
-            <div id="edit-btn">Edit</div>
+            <!--/.Panel 8-->
           </div>
+
         </div>
       </div>
-      <!-- IS ANYONE FREE ON THIS DAY -->
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="free-friend">
-            <p id="free-friend-text">No friends are availible today!</p>
+      <!--/.Content-->
+    </div>
+  </div>
+  <div class="container-fluid bg">
+    <div class="row">
+      <h1 id="main-title">Your Schedule:</h1>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- CALENDAR SECTION -->
+        <div class="calendar-container">
+          <div class="calendar-day" id="mon" is-available="false" value="1">
+            <p class="week-day">Mon</p>
           </div>
+          <div class="calendar-day" id="tue" is-available="false" value="2">
+            <p class="week-day">Tue</p>
+          </div>
+          <div class="calendar-day" id="wed" is-available="false" value="3">
+            <p class="week-day">Wed</p>
+          </div>
+          <div class="calendar-day" id="thu" is-available="false" value="4">
+            <p class="week-day">Thu</p>
+          </div>
+          <div class="calendar-day" id="fri" is-available="false" value="5">
+            <p class="week-day">Fri</p>
+          </div>
+          <div class="calendar-day" id="sat" is-available="false" value="6">
+            <p class="week-day">Sat</p>
+          </div>
+          <div class="calendar-day" id="sun" is-available="false" value="7">
+            <p class="week-day">Sun</p>
+          </div>
+          <div id="edit-btn">Edit</div>
         </div>
-      </div>
-      <div class="row">
-        <div class="night-toggle"></div>
       </div>
     </div>
-    <script src="js/editAvail.js"></script>
-    <script src="js/nightToggle.js"></script>
-  </body>
+    <!-- IS ANYONE FREE ON THIS DAY -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="free-friend">
+          <p id="free-friend-text">No friends are availible today!</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="night-toggle"></div>
+    </div>
+  </div>
+  <script src="js/moment.js"></script>
+  <script src="js/editAvail.js"></script>
+  <script src="js/nightToggle.js"></script>
+</body>
+
 </html>

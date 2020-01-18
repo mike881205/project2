@@ -6,25 +6,24 @@
   transition: background-color 2s, color 2s;
 }
 .night-mode{
-  background-image: linear-gradient(rgb(8, 8, 12), rgb(17, 17, 20));
+  background-image: linear-gradient(rgb(34, 34, 39), rgb(30, 30, 34));
   background-color: rgb(46, 46, 46);
   color: rgb(215, 231, 235);
-  box-shadow: -3px -3px 5px rgba(250, 250, 250, 0.192), 3px 3px 5px rgba(0, 0, 0, 0.596);
+  border-color: white;
+  border: solid 5px;
+  box-shadow: -3px -3px 5px rgba(0, 247, 255, 0.600), 3px 3px 5px rgba(0, 247, 255, 0.600);
 }
 #main-title{
   font-family: "Montserrat", sans-serif;
-  color: rgb(1, 1, 87);
+  color: inherit;
   font-size: 6vh;
   position: relative;
   text-align: center;
-  font-style: italic;
   font-weight: 900;
   margin-top: 30px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  text-shadow: -3px -3px 5px rgba(255, 255, 255, 0.733),
-    3px 3px 5px rgba(0, 0, 0, 0.158);
 }
 .night-toggle{
   padding: 30px;
@@ -47,8 +46,8 @@
 .calendar-container {
   box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.603),
     inset 3px 3px 5px rgba(0, 0, 0, 0.158);
-  margin-top: 10vh;
-  height: 30vh;
+    margin-top: 10vh;
+    height: 30vh;
   width: 98vw;
   border-radius: 30px;
   transition: box-shadow 1s;
@@ -61,16 +60,37 @@
 .calendar-day {
   margin-top: 10vh;
   box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.733),
-    3px 3px 5px rgba(0, 0, 0, 0.158);
+  3px 3px 5px rgba(0, 0, 0, 0.158);
   border-radius: 15%;
   height: 90%;
   width: 10%;
   display: inline-block;
   margin: 0.98vw;
 }
+.calendar-day-night{
+  border-color: white;
+  border: solid 3px;
+  box-shadow: -3px -3px 5px rgba(0, 247, 255, 0.500), 3px 3px 10px rgb(0, 247, 255, 0.500), inset -3px -3px 5px rgb(0, 247, 255, 0.500), inset 3px 3px 10px rgb(0, 247, 255, 0.500);
+}
+.calendar-day-night-avail{
+  border-color: white;
+  border: solid 3px;
+  box-shadow: -3px -3px 5px rgba(21, 255, 0, 0.5), 3px 3px 10px rgba(21, 255, 0, 0.5), inset -3px -3px 5px rgba(21, 255, 0, 0.5), inset 3px 3px 10px rgba(21, 255, 0, 0.5);
+}
+.calendar-day-night-unavail{
+  border-color: white;
+  border: solid 3px;
+  box-shadow: -3px -3px 5px rgba(255, 0, 0, 0.5), 3px 3px 10px rgba(255, 0, 0, 0.5), inset -3px -3px 5px rgba(255, 0, 0, 0.5), inset 3px 3px 10px rgba(255, 0, 0, 0.5);
+}
+.calendar-date{
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  font-size: 7vh;
+  color: rgb(121, 121, 121);
+}
 /* should change this to new class that can be controlled with a jQuery .addClass() */
 .calendar-day-free {
-  box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.733),
+box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.733),
     inset 3px 3px 5px rgba(85, 255, 99, 0.534);
 }
 .week-day {
@@ -92,6 +112,9 @@
   text-align: center;
   background-color: inherit;
 }
+.container-night{
+  box-shadow: inset 3px 3px 30px black, inset -3px -3px 30px black;
+}
 #free-friend-text {
   text-align: center;
   position: relative;
@@ -99,10 +122,9 @@
   font-family: "Montserrat", sans-serif;
   font-size: 2vw;
 }
-#edit-btn{
+.edit-btn{
   position: relative;
   display: inline-block;
-  top: 35%;
   margin-left: 3vw;
   padding: 10px 20px;
   background-color: inherit;
@@ -113,7 +135,12 @@
   font-family: "Montserrat", sans-serif;
   font-size: 1.5vw;
 }
-#edit-btn:active{
+.edit-btn-night{
+  box-shadow: inset 3px 3px 10px rgb(255, 0, 0), inset -3px -3px 10px rgb(255, 0, 0), 3px 3px 10px rgb(255, 0, 0), -3px -3px 10px rgb(255, 0, 0);
+  border: solid 3px;
+  border-color: white;
+}
+.edit-btn:active{
   box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.733),
   inset 3px 3px 5px rgba(0, 0, 0, 0.158);
 }
