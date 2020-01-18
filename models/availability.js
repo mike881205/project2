@@ -1,17 +1,21 @@
+const moment = require("moment")
+
 module.exports = function (sequelize, DataTypes) {
     let Availability = sequelize.define("Availability", {
         year: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            defaultValue: moment().format("YYYY")
         },
         week: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            defaultValue: moment().format("W")
         },
         day1: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
-            allowNull: false
+            allowNull: false,
         },
         day2: {
             type: DataTypes.BOOLEAN,

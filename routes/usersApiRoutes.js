@@ -16,14 +16,28 @@ module.exports = function (app) {
     console.log(req)
 
     db.Users.create({
+
       user: req.body.user,
       password: req.body.password
+
     }).then(function (dbUsers) {
+
+      db.Availability.create({
+        UserId: dbUsers.id
+
+      }).then(function (dbAvailability) {
+
+        res.json(dbAvailability)
+
+      })
+
       res.json(dbUsers);
-    })
-      .catch(function (err) {
-        res.json({ error: err });
-      });
+
+    }).catch(function (err) {
+
+      res.json({ error: err });
+
+    });
   });
 
 };
