@@ -1,4 +1,3 @@
-const axios = require('axios');
 // Get references to page elements
 let $exampleText = $("#example-text");
 let $exampleDescription = $("#example-description");

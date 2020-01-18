@@ -1,5 +1,5 @@
 let isEditing = true
-const freeDays = {
+let freeDays = {
     day1: false,
     day2: false,
     day3: false,
@@ -67,6 +67,8 @@ $(".edit-btn").on("click", function(){
         isEditing = false
         $(".edit-btn").text("Edit")
         $(".calendar-container").removeClass("calendar-container-editing")
+
+        
     }
     console.log(`isEditing = ${isEditing}`)
 })
