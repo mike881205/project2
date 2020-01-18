@@ -8,7 +8,10 @@ $(".night-toggle").on("click", function() {
         $(".calendar-day").addClass("calendar-day-night");
         $(".edit-btn").addClass("edit-btn-night")
         $(".free-friend").addClass("container-night");
+        $(".events-div").addClass("container-night");
         $(".calendar-container").addClass("container-night");
+        $("#friends-avail-container").addClass("calendar-day-night")
+        
         nightMode = true
     }else{
         $(".bg").removeClass("night-mode");
@@ -16,7 +19,9 @@ $(".night-toggle").on("click", function() {
         $(".calendar-day").removeClass("calendar-day-night");
         $(".edit-btn").removeClass("edit-btn-night")
         $(".free-friend").removeClass("container-night");
+        $(".events-div").removeClass("container-night");
         $(".calendar-container").removeClass("container-night");
+        $("#friends-avail-container").removeClass("calendar-day-night")
         nightMode = false
     }
 });
