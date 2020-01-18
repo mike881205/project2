@@ -1,74 +1,74 @@
-let isEditing = false
+let isEditing = true
 
 const freeDays = {
-    mon: false,
-    tue: false,
-    wed: false,
-    thu: false,
-    fri: false,
-    sat: false,
-    sun: false
+    day1: false,
+    day2: false,
+    day3: false,
+    day4: false,
+    day5: false,
+    day6: false,
+    day7: false
 };
 
 const setBusy = function(day){
     switch (day) {
-      case "mon":
-        freeDays.mon = false;
+      case "day1":
+        freeDays.day1 = false;
         break;
-      case "tue":
-        freeDays.tue = false;
+      case "day2":
+        freeDays.day2 = false;
         break;
-      case "wed":
-        freeDays.wed = false;
+      case "day3":
+        freeDays.day3 = false;
         break;
-      case "thu":
-        freeDays.thu = false;
+      case "day4":
+        freeDays.day4 = false;
         break;
-      case "fri":
-        freeDays.fri = false;
+      case "day5":
+        freeDays.day5 = false;
         break;
-      case "sat":
-        freeDays.sat = false;
+      case "day6":
+        freeDays.day6 = false;
         break;
-      case "sun":
-        freeDays.sun = false;
+      case "day7":
+        freeDays.day7 = false;
         break;
     }
   };
   const setFree = function(day){
     switch(day){
-        case("mon"):
-        freeDays.mon = true;
+        case("day1"):
+        freeDays.day1 = true;
         break;
-        case("tue"):
-        freeDays.tue = true;
+        case("day2"):
+        freeDays.day2 = true;
         break;
-        case("wed"):
-        freeDays.wed = true;
+        case("day3"):
+        freeDays.day3 = true;
         break;
-        case("thu"):
-        freeDays.thu = true;
+        case("day4"):
+        freeDays.day4 = true;
         break;
-        case("fri"):
-        freeDays.fri = true;
+        case("day5"):
+        freeDays.day5 = true;
         break;
-        case("sat"):
-        freeDays.sat = true;
+        case("day6"):
+        freeDays.day6 = true;
         break;
-        case("sun"):
-        freeDays.sun = true;
+        case("day7"):
+        freeDays.day7 = true;
         break;
     };
 };
 
-$("#edit-btn").on("click", function(){
+$(".edit-btn").on("click", function(){
     if (!isEditing){
         isEditing = true
-        $("#edit-btn").text("Submit")
+        $(".edit-btn").text("Submit")
         $(".calendar-container").addClass("calendar-container-editing")
     } else {
         isEditing = false
-        $("#edit-btn").text("Edit")
+        $(".edit-btn").text("Edit")
         $(".calendar-container").removeClass("calendar-container-editing")
     }
     console.log(`isEditing = ${isEditing}`)
