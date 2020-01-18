@@ -2,9 +2,12 @@ $(".loginSubmit").on("click", function (event) {
   event.preventDefault();
   console.log("this might work");
 
+  let userName = $("#modalLRInput10")
+  let userPassWord = $("#modalLRInput11")
+
   let member = {
-    user: $("#modalLRInput10").val().trim(),
-    password: $("#modalLRInput11").val().trim(),
+    user: userName.val().trim(),
+    password: userPassWord.val().trim(),
   };
   console.log(member);
   // let isUserValid //= userFormat(member.user)
@@ -14,28 +17,21 @@ $(".loginSubmit").on("click", function (event) {
   //   return
   // }
 
+  let dbID;
+
   $.get("/api/users", member)
     .then(function (data) {
-      // if (data.message) {
-      //   alert("Password or user incorrect. Please try again or register to the site.")
-      // } else {
-      //   loggedIn = localStorage.setItem("loggedIn", true);
-      //   localStorage.clear();
-      //   localStorage.setItem("name", data.name);
-      //   localStorage.setItem("userId", data.id);
 
-      // }
-      console.log(data[0])
-
+      dbID = data[0].id
       let dbUser = data[0].user
       let dbPassword = data[0].password
       let userLogIn = member.user
       let passLogIn = member.password
 
       if (dbUser !== userLogIn && dbPassword !== passLogIn) {
-        console.log("not a user")
+        alert("Password or user incorrect. Please try again or register to the site.")
       } else {
-        console.log("logged in")
+        console.log("logged in as: ", dbID, dbUser)
       }
 
     });
@@ -66,10 +62,6 @@ $(".signup").on("click", function (event) {
       localStorage.setItem("userId", data.id);
     });
 
-  // $.post("/api/availability", freeDays)
-  //   .then(function (data) {
-  //     console.log(data)
-  //   });
 });
 
 /* function userFormat(user) {

@@ -65,7 +65,7 @@
                   <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
                 </div>
                 <div class="text-center mt-2">
-                  <button class="btn btn-info loginSubmit">Log in <i class="fas fa-sign-in ml-1"></i></button>
+                  <button class="btn btn-info loginSubmit" data-dismiss="modal">Log in <i class="fas fa-sign-in ml-1"></i></button>
                 </div>
               </div>
             </div>
@@ -85,7 +85,7 @@
                   <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>
                 </div>
                 <div class="text-center form-sm mt-2">
-                  <button class="btn btn-info signup">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+                  <button class="btn btn-info signup" data-dismiss="modal">Sign up <i class="fas fa-sign-in ml-1"></i></button>
                 </div>
               </div>
             </div>
@@ -137,11 +137,11 @@
         </div>
       </div>
     </div>
-    <script src="js/createUser.js"></script>
+    <script src="js/user.js"></script>
     <script src="js/moment.js"></script>
     <script src="js/editAvail.js"></script>
     <!-- IS ANYONE FREE ON THIS DAY -->
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-sm-6">
         <div class="free-friend">
           <p id="free-friend-text">No friends are available today!</p>
@@ -170,16 +170,13 @@
           </ul>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="row">
       <div class="night-toggle"></div>
     </div>
   </div>
   <script src="js/nightToggle.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
   <script>
     $(document).ready(function () {
       const queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=[orlando]&size=5&apikey=c7koBylzet9Zf4hdII9P5b2EwyHtYl4O";
