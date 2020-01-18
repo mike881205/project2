@@ -61,14 +61,4 @@ module.exports = function (app) {
 
   })
 
-  app.delete("/api/availability/:id", function (req, res) {
-    db.Availability.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function (dbAvailability) {
-      res.json(dbAvailability);
-    });
-  });
-
 };
