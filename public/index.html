@@ -23,7 +23,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
-  <title>CanWeHang?</title>
+  <title>Come on Guys!</title>
 </head>
 
 <body>
@@ -37,11 +37,11 @@
     aria-hidden="true">
     <div class="modal-dialog cascading-modal" role="document">
       <!--Content-->
-      <div class="modal-content">
+      <div class="modal-content" id="modal-class-style">
         <!--Modal cascading tabs-->
         <div class="modal-c-tabs">
           <!-- Nav tabs -->
-          <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+          <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" id="modal-tab-style" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
                 Login</a>
@@ -68,7 +68,7 @@
                   <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
                 </div>
                 <div class="text-center mt-2">
-                  <button class="btn btn-info">Log in <i class="fas fa-sign-in ml-1"></i></button>
+                  <button id="loginbtn" class="btn btn-info">Log in <i class="fas fa-sign-in ml-1"></i></button>
                 </div>
               </div>
             </div>
@@ -93,7 +93,7 @@
                   <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat password</label>
                 </div>
                 <div class="text-center form-sm mt-2">
-                  <button class="btn btn-info">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+                  <button id="loginbtn" class="btn btn-info">Sign up <i class="fas fa-sign-in ml-1"></i></button>
                 </div>
               </div>
             </div>
@@ -172,7 +172,7 @@
       </div>
       <div class="col-sm-8">
         <div class="free-friend" id="friends-avail-container">
-          <p class="friends-avail-title">Can We Hang?</p>
+          <p class="friends-avail-title">Lets Hang!</p>
           <ul id="friends-avail">
             <li>You and ____ are both free ____! events?</li>
           </ul>
