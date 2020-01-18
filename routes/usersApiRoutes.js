@@ -13,6 +13,8 @@ module.exports = function (app) {
   });
 
   app.post("/api/users", function (req, res) {
+    console.log(req)
+
     db.Users.create({
       user: req.body.user,
       password: req.body.password
@@ -20,7 +22,7 @@ module.exports = function (app) {
       res.json(dbUsers);
     })
       .catch(function (err) {
-        res.json(err);
+        res.json({ error: err });
       });
   });
 

@@ -1,20 +1,20 @@
-$("#loginSubmit").on("click", function (event) {
+$(".loginSubmit").on("click", function (event) {
   event.preventDefault();
   console.log("this might work");
 
-  let newUser = {
+  let member = {
     User: $("#modalLRInput10").val().trim(),
     Password: $("#modalLRInput11").val().trim(),
   };
-  console.log(newUser);
-   let isUserValid //= userFormat(newUser.user)
+  console.log(member);
+  let isUserValid //= userFormat(member.user)
 
-  if (!isUserValid || !newUser.password) {
+  if (!isUserValid || !member.password) {
     //alert("Please complete all fields.")
     return
-  } 
+  }
 
-  $.get("api/users", newUser).then(function (data) {
+  $.get("api/users", member).then(function (data) {
     if (data.message) {
       alert("Password or user incorrect. Please try again or register to the site.")
     } else {
@@ -27,28 +27,31 @@ $("#loginSubmit").on("click", function (event) {
   });
 });
 
-$("#signup").on("click", function (event) {
+$(".signup").on("click", function (event) {
   event.preventDefault();
   console.log("this works!!!!!!");
 
-  let member = {
-    User: $("#modalLRInput12").val().trim(),
-    Password: $("#modalLRInput13").val().trim(),
+  let newUser = {
+    user: $("#modalLRInput12").val().trim(),
+    password: $("#modalLRInput13").val().trim()
   };
-  console.log(member)
-  let isUserValid //= userFormat(member.user)
-  let isEmptyString //= checkForEmptyEntries(member)
+  console.log(newUser)
+  // let isUserValid //= userFormat(newUser.user)
+  // let isEmptyString //= checkForEmptyEntries(newUser)
 
-  if (!isUserValid) {
-    //alert("Please complete all fields.")
-    return
-  };
+  // if (!isUserValid) {
+  //   //alert("Please complete all fields.")
+  //   return
+  // };
 
-  $.post("api/users", member).then(function (data) {
-    console.log(data)
-    localStorage.setItem("name", data.name);
-    localStorage.setItem("userId", data.id);
-  });
+  $.post("/api/users", newUser, function() {
+    console.log("please work")
+  })
+    .then(function (data) {
+      console.log(data)
+      localStorage.setItem("name", data.name);
+      localStorage.setItem("userId", data.id);
+    });
 });
 
 /* function userFormat(user) {
