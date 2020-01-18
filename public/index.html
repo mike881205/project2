@@ -7,17 +7,22 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="styles/styles.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
-
   <title>CanWeHang?</title>
 </head>
 
@@ -33,10 +38,8 @@
     <div class="modal-dialog cascading-modal" role="document">
       <!--Content-->
       <div class="modal-content">
-
         <!--Modal cascading tabs-->
         <div class="modal-c-tabs">
-
           <!-- Nav tabs -->
           <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
             <li class="nav-item">
@@ -48,66 +51,60 @@
                 Register</a>
             </li>
           </ul>
-
           <!-- Tab panels -->
           <div class="tab-content">
             <!--Panel 7-->
             <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
-
               <!--Body-->
               <div class="modal-body mb-1">
                 <div class="md-form form-sm mb-5">
                   <i class="fas fa-envelope prefix"></i>
-                  <input type="text" id="modalLRInput10" class="form-control form-control-sm validate">
-                  <label data-error="wrong" data-success="right" for="modalLRInput10">Your Username</label>
+                  <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
+                  <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
                 </div>
-
                 <div class="md-form form-sm mb-4">
                   <i class="fas fa-lock prefix"></i>
                   <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
                   <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
                 </div>
                 <div class="text-center mt-2">
-                  <button class="btn btn-info" id="loginSubmit" type="submit" value="Submit">Log in <i
-                      class="fas fa-sign-in ml-1"></i></button>
+                  <button class="btn btn-info">Log in <i class="fas fa-sign-in ml-1"></i></button>
                 </div>
               </div>
-
             </div>
             <!--/.Panel 7-->
-
             <!--Panel 8-->
             <div class="tab-pane fade" id="panel8" role="tabpanel">
-
               <!--Body-->
               <div class="modal-body">
                 <div class="md-form form-sm mb-5">
                   <i class="fas fa-envelope prefix"></i>
-                  <input type="text" id="modalLRInput12" class="form-control form-control-sm validate">
-                  <label data-error="wrong" data-success="right" for="modalLRInput12">Create Username</label>
+                  <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
+                  <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
                 </div>
-
                 <div class="md-form form-sm mb-5">
                   <i class="fas fa-lock prefix"></i>
                   <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
-                  <label data-error="wrong" data-success="right" for="modalLRInput13">Create Password</label>
+                  <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>
                 </div>
-
-
+                <div class="md-form form-sm mb-4">
+                  <i class="fas fa-lock prefix"></i>
+                  <input type="password" id="modalLRInput14" class="form-control form-control-sm validate">
+                  <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat password</label>
+                </div>
                 <div class="text-center form-sm mt-2">
-                  <button class="btn btn-info" id="signup">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+                  <button class="btn btn-info">Sign up <i class="fas fa-sign-in ml-1"></i></button>
                 </div>
-
               </div>
             </div>
             <!--/.Panel 8-->
           </div>
-
         </div>
       </div>
       <!--/.Content-->
     </div>
   </div>
+  <!--Modal: Login / Register Form-->
   <div class="container-fluid bg">
     <div class="row">
       <h1 id="main-title">Your Schedule:</h1>
@@ -116,36 +113,45 @@
       <div class="col-sm-12">
         <!-- CALENDAR SECTION -->
         <div class="calendar-container">
-          <div class="calendar-day" id="mon" is-available="false" value="1">
-            <p class="week-day">Mon</p>
+          <div class="calendar-day" id="day1" is-available="false" value="1">
+            <p class="week-day" id="week-day1"></p>
+            <p class="calendar-date" id="date1">0</p>
           </div>
-          <div class="calendar-day" id="tue" is-available="false" value="2">
-            <p class="week-day">Tue</p>
+          <div class="calendar-day" id="day2" is-available="false" value="2">
+            <p class="week-day" id="week-day2"></p>
+            <p class="calendar-date" id="date2">0</p>
           </div>
-          <div class="calendar-day" id="wed" is-available="false" value="3">
-            <p class="week-day">Wed</p>
+          <div class="calendar-day" id="day3" is-available="false" value="3">
+            <p class="week-day" id="week-day3"></p>
+            <p class="calendar-date" id="date3">0</p>
           </div>
-          <div class="calendar-day" id="thu" is-available="false" value="4">
-            <p class="week-day">Thu</p>
+          <div class="calendar-day" id="day4" is-available="false" value="4">
+            <p class="week-day" id="week-day4"></p>
+            <p class="calendar-date" id="date4">0</p>
           </div>
-          <div class="calendar-day" id="fri" is-available="false" value="5">
-            <p class="week-day">Fri</p>
+          <div class="calendar-day" id="day5" is-available="false" value="5">
+            <p class="week-day" id="week-day5"></p>
+            <p class="calendar-date" id="date5">0</p>
           </div>
-          <div class="calendar-day" id="sat" is-available="false" value="6">
-            <p class="week-day">Sat</p>
+          <div class="calendar-day" id="day6" is-available="false" value="6">
+            <p class="week-day" id="week-day6"></p>
+            <p class="calendar-date" id="date6">0</p>
           </div>
-          <div class="calendar-day" id="sun" is-available="false" value="7">
-            <p class="week-day">Sun</p>
+          <div class="calendar-day" id="day7" is-available="false" value="7">
+            <p class="week-day" id="week-day7"></p>
+            <p class="calendar-date" id="date7">0</p>
           </div>
-          <div id="edit-btn">Edit</div>
+          <div class="edit-btn">Submit</div>
         </div>
       </div>
     </div>
+    <script src="js/moment.js"></script>
+    <script src="js/editAvail.js"></script>
     <!-- IS ANYONE FREE ON THIS DAY -->
     <div class="row">
       <div class="col-sm-12">
         <div class="free-friend">
-          <p id="free-friend-text">No friends are availible today!</p>
+          <p id="free-friend-text">No friends are available today!</p>
         </div>
       </div>
     </div>
@@ -153,8 +159,6 @@
       <div class="night-toggle"></div>
     </div>
   </div>
-  <script src="js/moment.js"></script>
-  <script src="js/editAvail.js"></script>
   <script src="js/nightToggle.js"></script>
 </body>
 
