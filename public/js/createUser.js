@@ -3,28 +3,42 @@ $(".loginSubmit").on("click", function (event) {
   console.log("this might work");
 
   let member = {
-    User: $("#modalLRInput10").val().trim(),
-    Password: $("#modalLRInput11").val().trim(),
+    user: $("#modalLRInput10").val().trim(),
+    password: $("#modalLRInput11").val().trim(),
   };
   console.log(member);
-  let isUserValid //= userFormat(member.user)
+  // let isUserValid //= userFormat(member.user)
 
-  if (!isUserValid || !member.password) {
-    //alert("Please complete all fields.")
-    return
-  }
+  // if (!isUserValid || !member.password) {
+  //   //alert("Please complete all fields.")
+  //   return
+  // }
 
-  $.get("api/users", member).then(function (data) {
-    if (data.message) {
-      alert("Password or user incorrect. Please try again or register to the site.")
-    } else {
-      loggedIn = localStorage.setItem("loggedIn", true);
-      localStorage.clear();
-      localStorage.setItem("name", data.name);
-      localStorage.setItem("userId", data.id);
+  $.get("/api/users", member)
+    .then(function (data) {
+      // if (data.message) {
+      //   alert("Password or user incorrect. Please try again or register to the site.")
+      // } else {
+      //   loggedIn = localStorage.setItem("loggedIn", true);
+      //   localStorage.clear();
+      //   localStorage.setItem("name", data.name);
+      //   localStorage.setItem("userId", data.id);
 
-    }
-  });
+      // }
+      console.log(data[0])
+
+      let dbUser = data[0].user
+      let dbPassword = data[0].password
+      let userLogIn = member.user
+      let passLogIn = member.password
+
+      if (dbUser !== userLogIn && dbPassword !== passLogIn) {
+        console.log("not a user")
+      } else {
+        console.log("logged in")
+      }
+
+    });
 });
 
 $(".signup").on("click", function (event) {
@@ -44,14 +58,27 @@ $(".signup").on("click", function (event) {
   //   return
   // };
 
-  $.post("/api/users", newUser, function() {
-    console.log("please work")
-  })
+  let freeDays = {
+    day1: false,
+    day2: false,
+    day3: false,
+    day4: false,
+    day5: false,
+    day6: false,
+    day7: false
+  };
+
+  $.post("/api/users", newUser)
     .then(function (data) {
       console.log(data)
       localStorage.setItem("name", data.name);
       localStorage.setItem("userId", data.id);
     });
+
+  // $.post("/api/availability", freeDays)
+  //   .then(function (data) {
+  //     console.log(data)
+  //   });
 });
 
 /* function userFormat(user) {

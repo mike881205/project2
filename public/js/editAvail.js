@@ -1,5 +1,5 @@
 let isEditing = true
-const freeDays = {
+let freeDays = {
     day1: false,
     day2: false,
     day3: false,

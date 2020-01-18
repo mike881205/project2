@@ -1,4 +1,3 @@
-
 // Requiring our models
 const db = require("../models");
 const moment = require("moment")
