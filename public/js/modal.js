@@ -7,6 +7,11 @@ let newUserPass = $("#modalLRInput13")
 
 let memAvail;
 
+$("#myModal").modal({
+  backdrop: 'static',
+  keyboard: false
+});
+
 // =======================================================================
 // Current Member Log In
 // =======================================================================
@@ -15,23 +20,14 @@ $(".loginSubmit").on("click", function (event) {
   event.preventDefault();
 
   if (!memberInput.val().trim().trim() || !memPassInput.val().trim().trim()) {
-    return;
+    alert("Please enter your Name AND Password")
+    return location.reload()
   }
 
   let member = {
     user: memberInput.val().trim(),
     password: memPassInput.val().trim(),
   };
-
-  // console.log(member);
-
-  validateMember(member)
-
-  getMemAvail(memberId);
-
-});
-
-function validateMember(member) {
 
   $.get("/api/users")
     .then(function (data) {
@@ -40,8 +36,7 @@ function validateMember(member) {
 
         if (member.user === data[i].user && member.password === data[i].password) {
           memberId = data[i].id;
-          console.log("logged in as: ", data[i].user);
-          console.log("memberId (" + memberId + ") stored");
+          getMemAvail(memberId);
           alert("Welcome Back!")
           return
         } else if (i === (data.length - 1) && (member.user !== data[i].user || member.password !== data[i].password)) {
@@ -51,21 +46,21 @@ function validateMember(member) {
 
       }
 
-    });
+      getMemAvail(memberId)
 
-}
+    });    
 
-function getMemAvail(memberId) {
+});
 
-  let getRoute = "/api/availability/" + ":" + memberId
+function getMemAvail(id) {
 
-  console.log(getRoute);
-
-  $.get("/api/availability/" + ":" + memberId, function (data) {
-    console.log(getRoute);
-    memAvail = data;
-
-  }).then(displayMemAvail)
+  $.ajax({
+    method: "GET",
+    url: "/api/availability/" + id
+  }).then(function(data) {
+    console.log(data)
+    displayMemAvail()
+  });
 
 }
 
