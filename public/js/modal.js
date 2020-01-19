@@ -1,11 +1,16 @@
 let calendar = $(".calendar-container")
-let memberName = $("#modalLRInput10")
-let memPassWord = $("#modalLRInput11")
+let memberInput = $("#modalLRInput10")
+let memPassInput = $("#modalLRInput11")
 let memberId;
 let newUserName = $("#modalLRInput12")
 let newUserPass = $("#modalLRInput13")
 
 let memAvail;
+
+$("#myModal").modal({
+  backdrop: 'static',
+  keyboard: false
+});
 
 // =======================================================================
 // Current Member Log In
@@ -14,71 +19,53 @@ let memAvail;
 $(".loginSubmit").on("click", function (event) {
   event.preventDefault();
 
-  if (!memberName.val().trim().trim() || !memPassWord.val().trim().trim()) {
-    return;
+  if (!memberInput.val().trim().trim() || !memPassInput.val().trim().trim()) {
+    alert("Please enter your Name AND Password")
+    return location.reload()
   }
 
   let member = {
-    user: memberName.val().trim(),
-    password: memPassWord.val().trim(),
+    user: memberInput.val().trim(),
+    password: memPassInput.val().trim(),
   };
-
-  // console.log(member);
-
-  validateMember(member)
-
-});
-
-function validateMember(member) {
-
-  let memberLogin = member.user
-  let passLogIn = member.password
 
   $.get("/api/users")
     .then(function (data) {
 
-      console.log(data)
-
       for (let i = 0; i < data.length; i++) {
 
-        let dbUser = data[i].user
-        let dbPassword = data[i].password
-
-        if (memberLogin !== dbUser && passLogIn !== dbPassword) {
-          alert("Password or user incorrect. Please try again or register to the site.")
+        if (member.user === data[i].user && member.password === data[i].password) {
+          memberId = data[i].id;
+          getMemAvail(memberId);
+          alert("Welcome Back!")
+          return
+        } else if (i === (data.length - 1) && (member.user !== data[i].user || member.password !== data[i].password)) {
+          alert("No users found. Please try again, or register.")
           return location.reload()
-        } else {
-          console.log("logged in as: ", dbUser)
-
-          memberId = data[i].id
-
-          console.log("memberId (" + memberId + ") stored")
-
-          getMemAvail();
-
-          return 
         }
 
       }
 
-    });
+      getMemAvail(memberId)
 
-}
+    });    
 
-function getMemAvail() {
+});
 
-  let getRoute = "/api/availability/" + ":" + memberId
+function getMemAvail(id) {
 
-  $.get("/api/availability/" + ":" + memberId, function (data) {
-    console.log(getRoute);
-    memAvail = data;
-
-  }).then(displayMemAvail)
+  $.ajax({
+    method: "GET",
+    url: "/api/availability/" + id
+  }).then(function(data) {
+    console.log(data)
+    displayMemAvail()
+  });
 
 }
 
 function displayMemAvail() {
-console.log("almost there")
+  console.log("almost there")
 }
 
 
@@ -88,7 +75,7 @@ console.log("almost there")
 
 $(".signup").on("click", function (event) {
   event.preventDefault();
-  
+
   if (!newUserName.val().trim().trim() || !newUserPass.val().trim().trim()) {
     return;
   }
