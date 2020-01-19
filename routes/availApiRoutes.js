@@ -6,13 +6,24 @@ const moment = require("moment")
 // =============================================================
 module.exports = function (app) {
 
-  app.get("/api/availability", function (req, res) {
+  app.get("/api/availability/", function (req, res) {
 
     db.Availability.findAll({}).then(function(dbAvailability) {
       res.json(dbAvailability)
     })
 
   })
+
+  app.get("/api/availability/:id", function(req, res) {
+    db.Availability.findOne({
+      where: {
+        id: req.params.memberId
+      },
+      include: [db.User]
+    }).then(function(dbAvailability) {
+      res.json(dbAvailability);
+    });
+  });
 
   app.put("/api/availability", function (req, res) {
 
