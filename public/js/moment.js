@@ -30,7 +30,7 @@ let dayNumToWord = function(dayNum){
         case(6):
             return "Sat"
             break;
-        case(7):
+        case(0):
             return "Sun"
             break;
     }
@@ -44,9 +44,6 @@ let displayDays = function(){
         i++
         incrementID++
         dayNum++
-        if(dayNum > 7){
-            dayNum = 1
-        }
     }
 }
 let displayDates = function(){
@@ -58,5 +55,5 @@ let displayDates = function(){
         i++
     }
 }
-displayDates()
-displayDays()
+    displayDates()
+    displayDays()

@@ -97,5 +97,33 @@ $(".calendar-day").on("click", function () {
       setBusy(thisDay)
       console.log(freeDays)
     }
+    
+    console.log(`isEditing = ${isEditing}`)
+})
+$(".calendar-day").on("click", function(){
+    if(isEditing){
+        if($(this).attr("is-available") === "false"){
+            $(this).addClass("calendar-day-free");
+            $(this).attr("is-available", "true");
+            thisDay = $(this).attr("id");
+            console.log(thisDay);
+            setFree(thisDay)
+            console.log(freeDays)
+        }else{
+            $(this).removeClass("calendar-day-free")
+            $(this).attr("is-available", "false")
+            thisDay = $(this).attr("id");
+            console.log(thisDay)
+            setBusy(thisDay)
+            console.log(freeDays)
+        }
+    } 
+})
+// for (let i=1; i<=7; i++){
+//   if ($(`#day${i}`).attr("is-available") === "false"){
+//     $(`#day${i}`).addClass(".calendar-day-unavail")
+//   }
+// }
+
   }
 })
