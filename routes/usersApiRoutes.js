@@ -7,7 +7,8 @@ module.exports = function (app) {
 
   // GET route for getting all of the users
   app.get("/api/users", function (req, res) {
-    db.Users.findAll({}).then(function (dbUsers) {
+    db.Users.findAll({})
+    .then(function (dbUsers) {
       res.json(dbUsers);
     });
   });
