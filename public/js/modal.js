@@ -7,6 +7,10 @@ let newUserPass = $("#modalLRInput13")
 
 let memAvail;
 
+// =======================================================================
+// Current Member Log In
+// =======================================================================
+
 $(".loginSubmit").on("click", function (event) {
   event.preventDefault();
 
@@ -19,7 +23,7 @@ $(".loginSubmit").on("click", function (event) {
     password: memPassWord.val().trim(),
   };
 
-  console.log(member);
+  // console.log(member);
 
   validateMember(member)
 
@@ -33,6 +37,8 @@ function validateMember(member) {
   $.get("/api/users")
     .then(function (data) {
 
+      console.log(data)
+
       for (let i = 0; i < data.length; i++) {
 
         let dbUser = data[i].user
@@ -43,9 +49,14 @@ function validateMember(member) {
           return location.reload()
         } else {
           console.log("logged in as: ", dbUser)
+
           memberId = data[i].id
-          getMemAvail()
-          return
+
+          console.log("memberId (" + memberId + ") stored")
+
+          getMemAvail();
+
+          return 
         }
 
       }
@@ -56,8 +67,10 @@ function validateMember(member) {
 
 function getMemAvail() {
 
-  $.get("/api/availability" + ":" + memberId, function (data) {
-    console.log("Availability", data);
+  let getRoute = "/api/availability/" + ":" + memberId
+
+  $.get("/api/availability/" + ":" + memberId, function (data) {
+    console.log(getRoute);
     memAvail = data;
 
   }).then(displayMemAvail)
@@ -68,22 +81,23 @@ function displayMemAvail() {
 console.log("almost there")
 }
 
+
+// =======================================================================
+// New Member Signup
+// =======================================================================
+
 $(".signup").on("click", function (event) {
   event.preventDefault();
-  console.log("this works!!!!!!");
+  
+  if (!newUserName.val().trim().trim() || !newUserPass.val().trim().trim()) {
+    return;
+  }
 
   let newUser = {
-    user: $("#modalLRInput12").val().trim(),
-    password: $("#modalLRInput13").val().trim()
+    user: newUserName.val().trim(),
+    password: newUserPass.val().trim()
   };
   console.log(newUser)
-  // let isUserValid //= userFormat(newUser.user)
-  // let isEmptyString //= checkForEmptyEntries(newUser)
-
-  // if (!isUserValid) {
-  //   //alert("Please complete all fields.")
-  //   return
-  // };
 
   $.post("/api/users", newUser)
     .then(function (data) {
