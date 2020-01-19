@@ -89,8 +89,8 @@ $(".calendar-day").on("click", function(){
         }
     } 
 })
-for (let i=1; i<=7; i++){
-  if ($(`#day${i}`).attr("is-available") === "false"){
-    $(`#day${i}`).addClass(".calendar-day-unavail")
-  }
-}
+// for (let i=1; i<=7; i++){
+//   if ($(`#day${i}`).attr("is-available") === "false"){
+//     $(`#day${i}`).addClass(".calendar-day-unavail")
+//   }
+// }
