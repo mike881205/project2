@@ -1,6 +1,6 @@
 let calendar = $(".calendar-container")
-let memberName = $("#modalLRInput10")
-let memPassWord = $("#modalLRInput11")
+let memberInput = $("#modalLRInput10")
+let memPassInput = $("#modalLRInput11")
 let memberId;
 let newUserName = $("#modalLRInput12")
 let newUserPass = $("#modalLRInput13")
@@ -14,49 +14,39 @@ let memAvail;
 $(".loginSubmit").on("click", function (event) {
   event.preventDefault();
 
-  if (!memberName.val().trim().trim() || !memPassWord.val().trim().trim()) {
+  if (!memberInput.val().trim().trim() || !memPassInput.val().trim().trim()) {
     return;
   }
 
   let member = {
-    user: memberName.val().trim(),
-    password: memPassWord.val().trim(),
+    user: memberInput.val().trim(),
+    password: memPassInput.val().trim(),
   };
 
   // console.log(member);
 
   validateMember(member)
 
+  getMemAvail(memberId);
+
 });
 
 function validateMember(member) {
 
-  let memberLogin = member.user
-  let passLogIn = member.password
-
   $.get("/api/users")
     .then(function (data) {
 
-      console.log(data)
-
       for (let i = 0; i < data.length; i++) {
 
-        let dbUser = data[i].user
-        let dbPassword = data[i].password
-
-        if (memberLogin !== dbUser && passLogIn !== dbPassword) {
-          alert("Password or user incorrect. Please try again or register to the site.")
+        if (member.user === data[i].user && member.password === data[i].password) {
+          memberId = data[i].id;
+          console.log("logged in as: ", data[i].user);
+          console.log("memberId (" + memberId + ") stored");
+          alert("Welcome Back!")
+          return
+        } else if (i === (data.length - 1) && (member.user !== data[i].user || member.password !== data[i].password)) {
+          alert("No users found. Please try again, or register.")
           return location.reload()
-        } else {
-          console.log("logged in as: ", dbUser)
-
-          memberId = data[i].id
-
-          console.log("memberId (" + memberId + ") stored")
-
-          getMemAvail();
-
-          return 
         }
 
       }
@@ -65,9 +55,11 @@ function validateMember(member) {
 
 }
 
-function getMemAvail() {
+function getMemAvail(memberId) {
 
   let getRoute = "/api/availability/" + ":" + memberId
+
+  console.log(getRoute);
 
   $.get("/api/availability/" + ":" + memberId, function (data) {
     console.log(getRoute);
@@ -78,7 +70,7 @@ function getMemAvail() {
 }
 
 function displayMemAvail() {
-console.log("almost there")
+  console.log("almost there")
 }
 
 
@@ -88,7 +80,7 @@ console.log("almost there")
 
 $(".signup").on("click", function (event) {
   event.preventDefault();
-  
+
   if (!newUserName.val().trim().trim() || !newUserPass.val().trim().trim()) {
     return;
   }
