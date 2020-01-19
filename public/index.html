@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <title>Come on Guys!</title>
+</head>
+
+<body>
+  <script>
+    $(window).on('load', function () {
+      $('#modalLRForm').modal('show');
+    });
+  </script>
+  <!--Modal: Login / Register Form-->
+  <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <!--Content-->
+      <div class="modal-content" id="modal-class-style">
+        <!--Modal cascading tabs-->
+        <div class="modal-c-tabs">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" id="modal-tab-style" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
+                Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user-plus mr-1"></i>
+                Register</a>
+            </li>
+          </ul>
+          <!-- Tab panels -->
+          <div class="tab-content">
+            <!--Panel 7-->
+            <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+              <!--Body-->
+              <div class="modal-body mb-1">
+                <div class="md-form form-sm mb-5">
+                  <i class="fas fa-envelope prefix"></i>
+                  <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
+                  <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
+                </div>
+                <div class="md-form form-sm mb-4">
+                  <i class="fas fa-lock prefix"></i>
+                  <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
+                  <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
+                </div>
+                <div class="text-center mt-2">
+                  <button class="btn btn-info loginSubmit" data-dismiss="modal">Log in <i class="fas fa-sign-in ml-1"></i></button>
+                </div>
+              </div>
+            </div>
+            <!--/.Panel 7-->
+            <!--Panel 8-->
+            <div class="tab-pane fade" id="panel8" role="tabpanel">
+              <!--Body-->
+              <div class="modal-body">
+                <div class="md-form form-sm mb-5">
+                  <i class="fas fa-envelope prefix"></i>
+                  <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
+                  <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
+                </div>
+                <div class="md-form form-sm mb-5">
+                  <i class="fas fa-lock prefix"></i>
+                  <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
+                  <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>
+                </div>
+                <div class="text-center form-sm mt-2">
+                  <button class="btn btn-info signup" data-dismiss="modal">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+                </div>
+              </div>
+            </div>
+            <!--/.Panel 8-->
+          </div>
+        </div>
+      </div>
+      <!--/.Content-->
+    </div>
+  </div>
+  <!--Modal: Login / Register Form-->
+  <div class="container-fluid bg">
+    <div class="row">
+      <h1 id="main-title">Your Schedule:</h1>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- CALENDAR SECTION -->
+        <div class="calendar-container">
+          <div class="calendar-day" id="day1" is-available="false" value="1">
+            <p class="week-day" id="week-day1"></p>
+            <p class="calendar-date" id="date1">0</p>
+          </div>
+          <div class="calendar-day" id="day2" is-available="false" value="2">
+            <p class="week-day" id="week-day2"></p>
+            <p class="calendar-date" id="date2">0</p>
+          </div>
+          <div class="calendar-day" id="day3" is-available="false" value="3">
+            <p class="week-day" id="week-day3"></p>
+            <p class="calendar-date" id="date3">0</p>
+          </div>
+          <div class="calendar-day" id="day4" is-available="false" value="4">
+            <p class="week-day" id="week-day4"></p>
+            <p class="calendar-date" id="date4">0</p>
+          </div>
+          <div class="calendar-day" id="day5" is-available="false" value="5">
+            <p class="week-day" id="week-day5"></p>
+            <p class="calendar-date" id="date5">0</p>
+          </div>
+          <div class="calendar-day" id="day6" is-available="false" value="6">
+            <p class="week-day" id="week-day6"></p>
+            <p class="calendar-date" id="date6">0</p>
+          </div>
+          <div class="calendar-day" id="day7" is-available="false" value="7">
+            <p class="week-day" id="week-day7"></p>
+            <p class="calendar-date" id="date7">0</p>
+          </div>
+          <div class="edit-btn">Submit</div>
+        </div>
+      </div>
+    </div>
+    <script src="js/user.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/editAvail.js"></script>
+    <!-- IS ANYONE FREE ON THIS DAY -->
+    <!-- <div class="row">
+      <div class="col-sm-6">
+        <div class="free-friend">
+          <p id="free-friend-text">No friends are available today!</p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="events-div">
+          <p id="events-text">There is basketball.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="free-friend" id="friends-list-container">
+          <p class="friends-list-title">Your friends</p>
+          <ul id="friends-list">
+            <li>LIST FRIEND HERE ...............schedule</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="free-friend" id="friends-avail-container">
+          <p class="friends-avail-title">Lets Hang!</p>
+          <ul id="friends-avail">
+            <li>You and ____ are both free ____! events?</li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+    <div class="row">
+      <div class="night-toggle"></div>
+    </div>
+  </div>
+  <script src="js/nightToggle.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      const queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=[orlando]&size=5&apikey=c7koBylzet9Zf4hdII9P5b2EwyHtYl4O";
+      axios.get(queryURL)
+        .then(data => {
+          console.log(JSON.parse(data.request.response)._embedded.events
+            .map(e => {
+              return {
+                name: e.name,
+                venue: e._embedded.venues[0].name,
+                date: e.dates.start.localDate,
+                time: e.dates.start.localTime,
+              }
+            }))
+        })
+
+    });
+  </script>
+</body>
+
+</html>
