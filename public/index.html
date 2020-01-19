@@ -14,9 +14,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
     crossorigin="anonymous"></script>
@@ -68,7 +65,7 @@
                   <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
                 </div>
                 <div class="text-center mt-2">
-                  <button id="loginbtn" class="btn btn-info">Log in <i class="fas fa-sign-in ml-1"></i></button>
+                  <button class="btn btn-info loginSubmit" data-dismiss="modal">Log in <i class="fas fa-sign-in ml-1"></i></button>
                 </div>
               </div>
             </div>
@@ -87,13 +84,8 @@
                   <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
                   <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>
                 </div>
-                <div class="md-form form-sm mb-4">
-                  <i class="fas fa-lock prefix"></i>
-                  <input type="password" id="modalLRInput14" class="form-control form-control-sm validate">
-                  <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat password</label>
-                </div>
                 <div class="text-center form-sm mt-2">
-                  <button id="loginbtn" class="btn btn-info">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+                  <button class="btn btn-info signup" data-dismiss="modal">Sign up <i class="fas fa-sign-in ml-1"></i></button>
                 </div>
               </div>
             </div>
@@ -145,7 +137,7 @@
         </div>
       </div>
     </div>
-    <script src="js/createUser.js"></script>
+    <script src="js/modal.js"></script>
     <script src="js/moment.js"></script>
     <script src="js/editAvail.js"></script>
     <!-- IS ANYONE FREE ON THIS DAY -->
@@ -185,9 +177,6 @@
   </div>
   <script src="js/nightToggle.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
   <script>
     $(document).ready(function () {
       const queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=[orlando]&size=5&apikey=c7koBylzet9Zf4hdII9P5b2EwyHtYl4O";

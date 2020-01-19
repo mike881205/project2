@@ -7,21 +7,38 @@ module.exports = function (app) {
 
   // GET route for getting all of the users
   app.get("/api/users", function (req, res) {
-    db.Users.findAll({}).then(function (dbUsers) {
+    db.Users.findAll({})
+    .then(function (dbUsers) {
       res.json(dbUsers);
     });
   });
 
   app.post("/api/users", function (req, res) {
+    console.log(req)
+
     db.Users.create({
+
       user: req.body.user,
       password: req.body.password
+
     }).then(function (dbUsers) {
+
+      db.Availability.create({
+        UserId: dbUsers.id
+
+      }).then(function (dbAvailability) {
+
+        res.json(dbAvailability)
+
+      })
+
       res.json(dbUsers);
-    })
-      .catch(function (err) {
-        res.json(err);
-      });
+
+    }).catch(function (err) {
+
+      res.json({ error: err });
+
+    });
   });
 
 };

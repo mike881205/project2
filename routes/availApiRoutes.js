@@ -1,4 +1,3 @@
-
 // Requiring our models
 const db = require("../models");
 const moment = require("moment")
@@ -7,7 +6,7 @@ const moment = require("moment")
 // =============================================================
 module.exports = function (app) {
 
-  app.get("/api/availability", function (req, res) {
+  app.get("/api/availability/", function (req, res) {
 
     db.Availability.findAll({}).then(function(dbAvailability) {
       res.json(dbAvailability)
@@ -15,25 +14,14 @@ module.exports = function (app) {
 
   })
 
-  app.post("/api/availability", function (req, res) {
-
-    db.Availability.create({
-      year: moment().format("YYYY"),
-      week: moment().format("W"),
-      day1: req.body.day1,
-      day2: req.body.day2,
-      day3: req.body.day3,
-      day4: req.body.day4,
-      day5: req.body.day5,
-      day6: req.body.day6,
-      day7: req.body.day7
-    }).then(function (dbAvailability) {
+  app.get("/api/availability/:id", function(req, res) {
+    db.Availability.findOne({
+      where: {
+        id: req.params.id
+      },
+    }).then(function(dbAvailability) {
       res.json(dbAvailability);
-    })
-      .catch(function (err) {
-        res.json(err)
-      });
-
+    });
   });
 
   app.put("/api/availability", function (req, res) {
@@ -50,7 +38,8 @@ module.exports = function (app) {
       },
       {
         where: {
-          id: req.par      }
+          id: req.params.id
+        }
       }
     ).then(function (dbAvailability) {
       res.json(dbAvailability);
