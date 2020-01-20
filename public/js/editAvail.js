@@ -72,9 +72,13 @@ $(".edit-btn").on("click", function () {
     $(".edit-btn").text("Edit")
     $(".calendar-container").removeClass("calendar-container-editing")
 
+    localStorage.getItem(memberId)
+
+    console.log(memberId)
+
     $.ajax({
       method: "PUT",
-      url: "/api/availability/:" + id,
+      url: "/api/availability/:" + memberId,
       data: freeDays
     })
       .then(function (data) {

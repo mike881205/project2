@@ -7,7 +7,7 @@ let newUserPass = $("#modalLRInput13")
 
 let memAvail;
 
-$("#myModal").modal({
+$("#modalLRForm").modal({
   backdrop: 'static',
   keyboard: false
 });
@@ -36,6 +36,8 @@ $(".loginSubmit").on("click", function (event) {
 
         if (member.user === data[i].user && member.password === data[i].password) {
           memberId = data[i].id;
+          localStorage.clear();
+          localStorage.setItem("member Id", memberId);
           getMemAvail(memberId);
           alert("Welcome Back!")
           return
@@ -48,7 +50,7 @@ $(".loginSubmit").on("click", function (event) {
 
       getMemAvail(memberId)
 
-    });    
+    });
 
 });
 
@@ -57,7 +59,7 @@ function getMemAvail(id) {
   $.ajax({
     method: "GET",
     url: "/api/availability/" + id
-  }).then(function(data) {
+  }).then(function (data) {
     console.log(data)
     displayMemAvail()
   });
@@ -95,20 +97,3 @@ $(".signup").on("click", function (event) {
     });
 
 });
-
-/* function userFormat(user) {
-  let regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  let format = (user.match(regex));
-  if (!user || !format) {
-    return false
-  }
-  return true
-};
-
-function checkForEmptyEntries(entry) {
-  for (let key in entry) {
-    if (!entry[key]) {
-      return false
-    };
-  };
-}; */
