@@ -83,11 +83,6 @@ $(".edit-btn").on("click", function () {
     })
       .then(function (data) {
         console.log(data)
-
-        // $.put("/api/availability", freeDays)
-        //   .then(function (data) {
-        //     console.log(data)
-        //   })
       })
 
     console.log(`isEditing = ${isEditing}`)

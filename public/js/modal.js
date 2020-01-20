@@ -48,8 +48,6 @@ $(".loginSubmit").on("click", function (event) {
 
       }
 
-      getMemAvail(memberId)
-
     });
 
 });
