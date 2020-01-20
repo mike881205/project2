@@ -72,12 +72,22 @@ $(".edit-btn").on("click", function () {
     $(".edit-btn").text("Edit")
     $(".calendar-container").removeClass("calendar-container-editing")
 
-    $.put("/api/availability", freeDays)
+    $.ajax({
+      method: "PUT",
+      url: "/api/availability/:" + id,
+      data: freeDays
+    })
       .then(function (data) {
         console.log(data)
+
+        // $.put("/api/availability", freeDays)
+        //   .then(function (data) {
+        //     console.log(data)
+        //   })
       })
+
+    console.log(`isEditing = ${isEditing}`)
   }
-  console.log(`isEditing = ${isEditing}`)
 })
 
 $(".calendar-day").on("click", function () {

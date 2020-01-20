@@ -24,7 +24,7 @@ module.exports = function (app) {
     });
   });
 
-  app.put("/api/availability", function (req, res) {
+  app.put("/api/availability/:id", function (req, res) {
 
     db.Availability.update(
       {
