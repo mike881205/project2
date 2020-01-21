@@ -26,13 +26,13 @@ let currentDates = []
 
 // Function to assign the names of the days
 let dayNames = function () {
-  let i = 1
+  let i = 0
   let dayNum = currentDay
-  while (i <= 7) {
+  while (i <= 6) {
     currentDays.push(dayNumToWord(dayNum))
     i++
-    if (dayNum > 7) {
-      dayNum = 1
+    if (dayNum > 6) {
+      dayNum = 0
     }
     dayNum++
   }
@@ -110,6 +110,8 @@ function validateMember(member) {
     });
 }
 
+
+
 function getMemAvail(id) {
 
   let currentUserSchedule = []
@@ -163,8 +165,7 @@ function getMemAvail(id) {
     // See the final results
     console.log("Available Friends (expand to view): ")
     console.log(availableFriendsData)
-    // showResults(availableFriendsData, availableFriends)
-    // console.log(availableFriends)
+    displayFriends(availableFriendsData)
 
 
   });
@@ -203,49 +204,12 @@ function compareAvail(Sched1, Sched2, arr, id) {
   })
 }
 
-function showResults(arr1, arr2) {
+function displayFriends (arr) {
 
-
-  for (let i = 0; i < arr1.length; i++) {
-
-    let friendObject = {name, availableDays, availableDates}
-
-    if (arr1[i].name === arr1[i+1].name) {
-
-      if ((i+1) >= arr1.length) {
-      friendObject.name = arr1[i].name
-      friendObject.availableDays.push(arr1[i].day)
-      friendObject.availableDates.push(arr1[i].date)
-      }
-      friendObject.name = arr1[i+1].name
-      friendObject.availableDays.push(arr1[i].day)
-      friendObject.availableDays.push(arr1[i+1].day)
-      friendObject.availableDates.push(arr1[i].date)
-      friendObject.availableDates.push(arr1[i+1].date)
-
-      arr2.push(friendObject)
-
-    } else {
-
-      let friendObject = {name, availableDays, availableDates}
-
-      friendObject.name = arr1[i+1].name
-      friendObject.availableDay[i+1].day = arr1[i+1].day
-
-    }
-
-    if (arr1[i-1].name !== arr1[i].name && arr1[i].name !== arr1[i + 1].name) {
-
-      friendObject.name = arr1[i].name
-      friendObject.availableDay = arr1[i].day
-      friendObject.availableDate  = arr1[i].date
-      arr2.push(friendObject)
-    }
-
-  }
-
+  console.log(arr)
 
 }
+
 
 
 // =======================================================================
