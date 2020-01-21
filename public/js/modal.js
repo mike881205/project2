@@ -257,32 +257,22 @@ let newUserPass = $("#modalLRInput13")
 
 $(".signup").on("click", function (event) {
   event.preventDefault();
-
   if (!newUserName.val().trim().trim() || !newUserPass.val().trim().trim()) {
     return;
   }
-
   let newUser = {
     user: newUserName.val().trim(),
     password: newUserPass.val().trim()
   };
   console.log(newUser)
-
   $.get("/api/users", newUser)
     .then(function (data) {
-
       for (let i = 0; i < data.length; i++) {
-
         if (newUser.user === data[i].user) {
-
           alert("User name taken, please select another")
-
           return location.reload()
-
         }
-
       }
-
       $.post("/api/users", newUser)
         .then(function (data) {
           console.log(data)
@@ -290,7 +280,5 @@ $(".signup").on("click", function (event) {
           localStorage.setItem("name", data.name);
           localStorage.setItem("userId", data.id);
         });
-
     })
-
 });
