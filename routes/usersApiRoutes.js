@@ -13,6 +13,16 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/users/:id", function(req, res) {
+    db.Users.findOne({
+      where: {
+        id: req.params.id
+      },
+    }).then(function(dbUsers) {
+      res.json(dbUsers);
+    });
+  });
+
   app.post("/api/users", function (req, res) {
     console.log(req)
 
@@ -31,8 +41,6 @@ module.exports = function (app) {
         res.json(dbAvailability)
 
       })
-
-      res.json(dbUsers);
 
     }).catch(function (err) {
 
