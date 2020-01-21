@@ -71,34 +71,42 @@ $(".edit-btn").on("click", function () {
     isEditing = false
     $(".edit-btn").text("Edit")
     $(".calendar-container").removeClass("calendar-container-editing")
+    if (localStorage.getItem("member Id")) {
+     
+      let id = localStorage.getItem("member Id")
 
-    localStorage.getItem(memberId)
-
-    //console.log(memberId)
-
-    $.ajax({
-      method: "PUT",
-      url: "/api/availability/" + memberId,
-      data: freeDays
-    })
-      .then(function () {
-
-        console.log("Availability updated")
-
-        $.ajax({
-          method: "GET",
-          url: "/api/availability/" + memberId
+      $.ajax({
+        method: "PUT",
+        url: "/api/availability/" + id,
+        data: freeDays
+      }).then(function () {
+          console.log("Availability updated")
+          $.ajax({
+            method: "GET",
+            url: "/api/availability/" + id
+          }).then(function(data) {
+            console.log(data)
+          })
         })
-        
-        .then(function(data) {
-        
-          console.log(data)
-        
+    } else if (localStorage.getItem("userId")) {
+
+      let id = localStorage.getItem("userId")
+
+      $.ajax({
+        method: "PUT",
+        url: "/api/availability/" + id,
+        data: freeDays
+      }).then(function () {
+          console.log("Availability updated")
+          $.ajax({
+            method: "GET",
+            url: "/api/availability/" + id
+          }).then(function(data) {          
+            console.log(data)          
+          })  
         })
+    }
 
-      })
-
-    //console.log(`isEditing = ${isEditing}`)
   }
 })
 

@@ -114,6 +114,7 @@ function getMemAvail(id) {
 
   let currentUserSchedule = []
   let otherUsersInfo = []
+  let availableFriendsData = []
   let availableFriends = []
   let otherUserID;
   let otherUserSchedule;
@@ -137,7 +138,7 @@ function getMemAvail(id) {
           userInfo.day6,
           userInfo.day7
         )
-      // Push all other user info to another array
+        // Push all other user info to another array
       } else {
         otherUsersInfo.push(userInfo)
       }
@@ -156,12 +157,15 @@ function getMemAvail(id) {
         otherUsersInfo[i].day7,
       ]
       // Call the function to compare the availabilities
-      compareAvail(currentUserSchedule, otherUserSchedule, availableFriends, otherUserID)
+      compareAvail(currentUserSchedule, otherUserSchedule, availableFriendsData, otherUserID)
     }
 
     // See the final results
     console.log("Available Friends (expand to view): ")
-    console.log(availableFriends)
+    console.log(availableFriendsData)
+    // showResults(availableFriendsData, availableFriends)
+    // console.log(availableFriends)
+
 
   });
 }
@@ -197,6 +201,50 @@ function compareAvail(Sched1, Sched2, arr, id) {
       }
     }
   })
+}
+
+function showResults(arr1, arr2) {
+
+
+  for (let i = 0; i < arr1.length; i++) {
+
+    let friendObject = {name, availableDays, availableDates}
+
+    if (arr1[i].name === arr1[i+1].name) {
+
+      if ((i+1) >= arr1.length) {
+      friendObject.name = arr1[i].name
+      friendObject.availableDays.push(arr1[i].day)
+      friendObject.availableDates.push(arr1[i].date)
+      }
+      friendObject.name = arr1[i+1].name
+      friendObject.availableDays.push(arr1[i].day)
+      friendObject.availableDays.push(arr1[i+1].day)
+      friendObject.availableDates.push(arr1[i].date)
+      friendObject.availableDates.push(arr1[i+1].date)
+
+      arr2.push(friendObject)
+
+    } else {
+
+      let friendObject = {name, availableDays, availableDates}
+
+      friendObject.name = arr1[i+1].name
+      friendObject.availableDay[i+1].day = arr1[i+1].day
+
+    }
+
+    if (arr1[i-1].name !== arr1[i].name && arr1[i].name !== arr1[i + 1].name) {
+
+      friendObject.name = arr1[i].name
+      friendObject.availableDay = arr1[i].day
+      friendObject.availableDate  = arr1[i].date
+      arr2.push(friendObject)
+    }
+
+  }
+
+
 }
 
 
