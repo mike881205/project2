@@ -3,9 +3,28 @@ $("#modalLRForm").modal({
   keyboard: false
 });
 
+// Display Users in Console
+$.ajax({
+  method: "GET",
+  url: "/api/users"
+}).then(function (data) {
+  console.log("Current Users")
+  console.log(data)
+})
+
+// Display availabilities in console
+$.ajax({
+  method: "GET",
+  url: "/api/availability"
+}).then(function (data) {
+  console.log("Current Availabilities")
+  console.log(data)
+})
+
 let currentDays = []
 let currentDates = []
 
+// Function to assign the names of the days
 let dayNames = function () {
   let i = 1
   let dayNum = currentDay
@@ -18,6 +37,8 @@ let dayNames = function () {
     dayNum++
   }
 }
+
+// Function to assign the actual date
 let dayDates = function () {
   let i = 0
   while (i < 7) {
@@ -62,21 +83,26 @@ function validateMember(member) {
   $.get("/api/users")
     .then(function (data) {
       console.log(data)
+      // If data exists for users
       if (data.length > 0) {
         for (let i = 0; i < data.length; i++) {
           // If both the name input and password input have a match in the database
           if (member.user === data[i].user && member.password === data[i].password) {
+            // Set the logged in memberId
             let memberId = data[i].id;
             localStorage.clear();
             localStorage.setItem("member Id", memberId);
+            // Call the function to retrieve availabilities for comparison
             getMemAvail(memberId);
             alert("Welcome Back!");
             return
+            // If no user name or pass word matches, alert the user  
           } else if (i === (data.length - 1) && (member.user !== data[i].user || member.password !== data[i].password)) {
             alert("No users found. Please try again, or register.")
             return location.reload()
           }
         }
+        // If not data exists alert the user
       } else {
         alert("No users found. Please try again, or register.")
         return location.reload()
@@ -92,13 +118,16 @@ function getMemAvail(id) {
   let otherUserID;
   let otherUserSchedule;
 
+  // Get all availabilities
   $.ajax({
     method: "GET",
     url: "/api/availability/"
   }).then(function (availabilityData) {
     for (let i = 0; i < availabilityData.length; i++) {
       let userInfo = availabilityData[i]
+      // If the member id equals a user info id
       if (id === userInfo.UserId) {
+        // Set the schedule for the logged in user
         currentUserSchedule.push(
           userInfo.day1,
           userInfo.day2,
@@ -108,11 +137,14 @@ function getMemAvail(id) {
           userInfo.day6,
           userInfo.day7
         )
+      // Push all other user info to another array
       } else {
         otherUsersInfo.push(userInfo)
       }
     }
+    // Going through each of the other members info....
     for (let i = 0; i < otherUsersInfo.length; i++) {
+      // Set the user ID and schedule for each other member
       otherUserID = otherUsersInfo[i].UserId
       otherUserSchedule = [
         otherUsersInfo[i].day1,
@@ -123,11 +155,13 @@ function getMemAvail(id) {
         otherUsersInfo[i].day6,
         otherUsersInfo[i].day7,
       ]
+      // Call the function to compare the availabilities
       compareAvail(currentUserSchedule, otherUserSchedule, availableFriends, otherUserID)
     }
 
+    // See the final results
     console.log("Available Friends (expand to view): ")
-    console.log(finalComparison)
+    console.log(availableFriends)
 
   });
 }
@@ -135,31 +169,34 @@ function getMemAvail(id) {
 function compareAvail(Sched1, Sched2, arr, id) {
 
   let otherUserName;
+  finalComparison = []
 
+  // Get list of all users
   $.ajax({
     method: "GET",
     url: "/api/users"
   }).then(function (data) {
     for (let i = 0; i < data.length; i++) {
+      // If the 'otherUserID' equals one of the user ID's
       if (id === data[i].id) {
+        // Save the matching user name
         otherUserName = data[i].user
       }
     }
+    // Going through both the logged in user's schedule and the other user's schedule
     for (let i = 0; i < 7; i++) {
       availableInfo = {}
+      // If the first schedule instance is true and equal to the same instance from the other schedule
       if (Sched1[i] === true && Sched1[i] === Sched2[i]) {
+        // Set the values for the available info Object
         availableInfo.name = otherUserName
         availableInfo.day = currentDays[i]
         availableInfo.date = currentDates[i]
+        // Push the object to the available friends array
         arr.push(availableInfo)
       }
     }
   })
-
-  finalComparison = []
-
-  finalComparison.push(arr)
-
 }
 
 
