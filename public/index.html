@@ -182,17 +182,17 @@
       const queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=[orlando]&size=5&apikey=c7koBylzet9Zf4hdII9P5b2EwyHtYl4O";
       axios.get(queryURL)
         .then(data => {
-          // console.log(JSON.parse(data.request.response)._embedded.events
-          //   .map(e => {
-          //     return {
-          //       name: e.name,
-          //       venue: e._embedded.venues[0].name,
-          //       date: e.dates.start.localDate,
-          //       time: e.dates.start.localTime,
-          //     }
-          //   }))
+          console.log(JSON.parse(data.request.response)._embedded.events
+            .map(e => {
+              return {
+                name: e.name,
+                venue: e._embedded.venues[0].name,
+                date: e.dates.start.localDate,
+                time: e.dates.start.localTime,
+              }
+            }))
 
-          console.log("ajax running")
+          // console.log("ajax running")
         })
 
     });
