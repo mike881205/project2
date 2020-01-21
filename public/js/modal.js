@@ -126,6 +126,7 @@ function getMemAvail(id) {
       compareAvail(currentUserSchedule, otherUserSchedule, availableFriends, otherUserID)
     }
 
+    console.log("Available Friends (expand to view): ")
     console.log(finalComparison)
 
   });
