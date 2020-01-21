@@ -38,10 +38,11 @@ module.exports = function (app) {
       },
       {
         where: {
-          id: req.params.id
+          UserId: req.params.id
         }
       }
     ).then(function (dbAvailability) {
+      console.log(dbAvailability)
       res.json(dbAvailability);
     })
       .catch(function (err) {
