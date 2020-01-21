@@ -1,5 +1,5 @@
 let currentWeek = moment().week()
-console.log(`Current week: ${currentWeek}`)
+//console.log(`Current week: ${currentWeek}`)
 
 let currentDay = moment().day();
 console.log(`Current day: ${currentDay}`)
@@ -8,7 +8,7 @@ let currentDate = moment().date();
 console.log(`Current date: ${currentDate}`)
 
 let currentMonth = moment().month() + 1;
-console.log(`Current month: ${currentMonth}`)
+//console.log(`Current month: ${currentMonth}`)
 
 let dayNumToWord = function(dayNum){
     switch(dayNum){
@@ -36,27 +36,27 @@ let dayNumToWord = function(dayNum){
     }
 }
 let displayDays = function(){
-    let i=0
+    let i = 1
     let incrementID = 1
     let dayNum = currentDay
-    while (i <=7){
+    while (i <= 7){
         $(`#week-day${incrementID}`).text(dayNumToWord(dayNum))
         i++
         incrementID++
-        dayNum++
-        if(dayNum > 7){
+        if (dayNum > 7) {
             dayNum = 1
         }
+        dayNum++
     }
 }
 let displayDates = function(){
     let i = 0
-    while (i <= 7){
+    while (i < 7){
         addedDay = moment().add(i, 'days').toObject()
-        console.log(addedDay.date)
+        //console.log(addedDay.date)
         $(`#date${i+1}`).text(`${addedDay.date}`)
         i++
     }
 }
-displayDates()
-displayDays()
+    displayDates()
+    displayDays()

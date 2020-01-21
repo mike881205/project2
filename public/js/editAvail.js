@@ -72,12 +72,34 @@ $(".edit-btn").on("click", function () {
     $(".edit-btn").text("Edit")
     $(".calendar-container").removeClass("calendar-container-editing")
 
-    $.put("/api/availability", freeDays)
-      .then(function (data) {
-        console.log(data)
+    localStorage.getItem(memberId)
+
+    //console.log(memberId)
+
+    $.ajax({
+      method: "PUT",
+      url: "/api/availability/" + memberId,
+      data: freeDays
+    })
+      .then(function () {
+
+        console.log("Availability updated")
+
+        $.ajax({
+          method: "GET",
+          url: "/api/availability/" + memberId
+        })
+        
+        .then(function(data) {
+        
+          console.log(data)
+        
+        })
+
       })
+
+    //console.log(`isEditing = ${isEditing}`)
   }
-  console.log(`isEditing = ${isEditing}`)
 })
 
 $(".calendar-day").on("click", function () {
@@ -86,16 +108,17 @@ $(".calendar-day").on("click", function () {
       $(this).addClass("calendar-day-free");
       $(this).attr("is-available", "true");
       thisDay = $(this).attr("id");
-      console.log(thisDay);
+      //console.log(thisDay);
       setFree(thisDay)
-      console.log(freeDays)
+      //console.log(freeDays)
     } else {
       $(this).removeClass("calendar-day-free")
       $(this).attr("is-available", "false")
       thisDay = $(this).attr("id");
-      console.log(thisDay)
+      //console.log(thisDay)
       setBusy(thisDay)
-      console.log(freeDays)
+      //console.log(freeDays)
     }
-  }
+
+  } //console.log(`isEditing = ${isEditing}`)
 })
