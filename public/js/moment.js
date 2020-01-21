@@ -30,25 +30,28 @@ let dayNumToWord = function(dayNum){
         case(6):
             return "Sat"
             break;
-        case(0):
+        case(7):
             return "Sun"
             break;
     }
 }
 let displayDays = function(){
-    let i=0
+    let i = 1
     let incrementID = 1
     let dayNum = currentDay
-    while (i <=7){
+    while (i <= 7){
         $(`#week-day${incrementID}`).text(dayNumToWord(dayNum))
         i++
         incrementID++
+        if (dayNum > 7) {
+            dayNum = 1
+        }
         dayNum++
     }
 }
 let displayDates = function(){
     let i = 0
-    while (i <= 7){
+    while (i < 7){
         addedDay = moment().add(i, 'days').toObject()
         //console.log(addedDay.date)
         $(`#date${i+1}`).text(`${addedDay.date}`)
