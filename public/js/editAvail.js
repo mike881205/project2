@@ -1,4 +1,4 @@
-let isEditing = true
+let isEditing = true;
 
 let freeDays = {
   day1: false,
@@ -10,7 +10,7 @@ let freeDays = {
   day7: false
 };
 
-const setBusy = function (day) {
+const setBusy = function(day) {
   switch (day) {
     case "day1":
       freeDays.day1 = false;
@@ -36,97 +36,114 @@ const setBusy = function (day) {
   }
 };
 
-const setFree = function (day) {
+const setFree = function(day) {
   switch (day) {
-    case ("day1"):
+    case "day1":
       freeDays.day1 = true;
       break;
-    case ("day2"):
+    case "day2":
       freeDays.day2 = true;
       break;
-    case ("day3"):
+    case "day3":
       freeDays.day3 = true;
       break;
-    case ("day4"):
+    case "day4":
       freeDays.day4 = true;
       break;
-    case ("day5"):
+    case "day5":
       freeDays.day5 = true;
       break;
-    case ("day6"):
+    case "day6":
       freeDays.day6 = true;
       break;
-    case ("day7"):
+    case "day7":
       freeDays.day7 = true;
       break;
-  };
+  }
 };
 
-$(".edit-btn").on("click", function () {
+$(".edit-btn").on("click", function() {
   if (!isEditing) {
-    isEditing = true
-    $(".edit-btn").text("Submit")
-    $(".calendar-container").addClass("calendar-container-editing")
-  } else {
-    isEditing = false
-    $(".edit-btn").text("Edit")
-    $(".calendar-container").removeClass("calendar-container-editing")
-    if (localStorage.getItem("member Id")) {
-     
-      let id = localStorage.getItem("member Id")
+    isEditing = true;
+    displayDates();
 
-      $.ajax({
-        method: "PUT",
-        url: "/api/availability/" + id,
-        data: freeDays
-      }).then(function () {
-          console.log("Availability updated")
-          $.ajax({
-            method: "GET",
-            url: "/api/availability/" + id
-          }).then(function(data) {
-            console.log(data)
-          })
-        })
-    } else if (localStorage.getItem("userId")) {
-
-      let id = localStorage.getItem("userId")
-
-      $.ajax({
-        method: "PUT",
-        url: "/api/availability/" + id,
-        data: freeDays
-      }).then(function () {
-          console.log("Availability updated")
-          $.ajax({
-            method: "GET",
-            url: "/api/availability/" + id
-          }).then(function(data) {          
-            console.log(data)          
-          })  
-        })
+    for (let i = 1; i <= 7; i++) {
+      $(`#day${i}`).attr("is-available", "false")
+      console.log($(`#day${i}`).attr("is-available"))
+      incrementDay = $(`#day${i}`)
+      setBusy(incrementDay);
     }
 
-  }
-})
+    $(".calendar-day")
+      .removeClass("calendar-day-free")
+      .removeClass("calendar-day-unavail")
+      .addClass("calendar-day");
+    $(".edit-btn").text("Submit");
+    $(".calendar-container").addClass("calendar-container-editing");
+  } else {
+    isEditing = false;
+    $(".edit-btn").text("Edit");
+    $(".calendar-container").removeClass("calendar-container-editing");
+    if (localStorage.getItem("member Id")) {
+      let id = localStorage.getItem("member Id");
 
-$(".calendar-day").on("click", function () {
+      $.ajax({
+        method: "PUT",
+        url: "/api/availability/" + id,
+        data: freeDays
+      }).then(function() {
+        console.log("Availability updated");
+        $.ajax({
+          method: "GET",
+          url: "/api/availability/" + id
+        }).then(function(data) {
+          console.log(data);
+        });
+      });
+    } else if (localStorage.getItem("userId")) {
+      let id = localStorage.getItem("userId");
+
+      $.ajax({
+        method: "PUT",
+        url: "/api/availability/" + id,
+        data: freeDays
+      }).then(function() {
+        console.log("Availability updated");
+        $.ajax({
+          method: "GET",
+          url: "/api/availability/" + id
+        }).then(function(data) {
+          console.log(data);
+        });
+      });
+    }
+
+    for (let i = 1; i <= 7; i++) {
+      availCheck = $(`#day${i}`).attr("is-available");
+      if (availCheck === "false") {
+        $(`#date${i}`).text("X");
+        $(`#day${i}`).addClass("calendar-day-unavail");
+      }
+    }
+  }
+});
+
+$(".calendar-day").on("click", function() {
   if (isEditing) {
     if ($(this).attr("is-available") === "false") {
       $(this).addClass("calendar-day-free");
       $(this).attr("is-available", "true");
       thisDay = $(this).attr("id");
       //console.log(thisDay);
-      setFree(thisDay)
+      setFree(thisDay);
       //console.log(freeDays)
     } else {
-      $(this).removeClass("calendar-day-free")
-      $(this).attr("is-available", "false")
+      $(this).removeClass("calendar-day-free");
+      $(this).attr("is-available", "false");
       thisDay = $(this).attr("id");
       //console.log(thisDay)
-      setBusy(thisDay)
+      setBusy(thisDay);
       //console.log(freeDays)
     }
-
   } //console.log(`isEditing = ${isEditing}`)
-})
+});

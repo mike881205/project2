@@ -2,8 +2,9 @@ let nightMode = false;
 
 $(".night-toggle").on("click", function() {
   if (!nightMode) {
-    console.log("this is working");
     $(".bg").addClass("night-mode");
+    $(".calendar-day").removeClass("calendar-day-free")
+    $(".calendar-day").removeClass("calendar-day-unavail")
     $(".night-toggle").addClass("night-toggle-active");
     $(".calendar-day").addClass("calendar-day-night");
     $(".edit-btn").addClass("edit-btn-night");
@@ -11,7 +12,15 @@ $(".night-toggle").on("click", function() {
     $(".events-div").addClass("container-night");
     $(".calendar-container").addClass("container-night");
     $("#friends-avail-container").addClass("friends-avail-container-night").removeClass("free-friend");
-
+    for (let i=1; i<=7; i++){
+      availCheck = $(`#day${i}`).attr("is-available")
+      if(availCheck === "false"){
+        $(`#date${i}`).text("X")
+        $(`#day${i}`).addClass("calendar-day-night-unavail")
+      } else {
+        $(`#day${i}`).addClass("calendar-day-night-avail")
+      }
+    }
     nightMode = true;
   } else {
     $(".bg").removeClass("night-mode");
@@ -25,6 +34,15 @@ $(".night-toggle").on("click", function() {
     $(".calendar-container").removeClass("container-night");
     $("#friends-avail-container").removeClass("friends-avail-container-night").removeClass("container-night").addClass("free-friend");
     nightMode = false;
+      for (let i=1; i<=7; i++){
+        availCheck = $(`#day${i}`).attr("is-available")
+        if(availCheck === "false"){
+          $(`#date${i}`).text("X")
+          $(`#day${i}`).addClass("calendar-day-unavail")
+        } else {
+          $(`#day${i}`).addClass("calendar-day-free")
+        }
+      }
   }
 });
 
@@ -38,3 +56,17 @@ $(".calendar-day").on("click", function() {
     }
   }
 });
+$(".edit-btn").on("click", function(){
+  if(nightMode){
+
+  for (let i=1; i<=7; i++){
+    availCheck = $(`#day${i}`).attr("is-available")
+    if(availCheck === "false"){
+      $(`#date${i}`).text("X")
+      $(`#day${i}`).addClass("calendar-day-night-unavail")
+    } else {
+      $(`#day${i}`).addClass("calendar-day-night-avail")
+    }
+  }
+}
+})
