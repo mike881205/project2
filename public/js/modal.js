@@ -165,8 +165,6 @@ function getMemAvail(id) {
     // See the final results
     console.log("Available Friends (expand to view): ")
     console.log(availableFriendsData)
-    displayFriends(availableFriendsData)
-
 
   });
 }
@@ -204,15 +202,16 @@ function compareAvail(Sched1, Sched2, arr, id) {
   })
 }
 
-function displayFriends (arr) {
+// function freeToday(arr){
+//   for(let i=0; i<=arr.length; i++){
+//     incrementDay = arr.i.date
+//     if (incrementDay.parseInt() === moment().date()){
+//       $("#free-friend-text").text(`Your friend ${arr.i.name} is free today!`)
+//     }
+//   }
+// }
 
-  console.log(arr)
-
-}
-
-
-
-// =======================================================================
+//=======================================================================
 // New Member Signup
 // =======================================================================
 
