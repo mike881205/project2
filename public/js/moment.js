@@ -12,6 +12,9 @@ let currentMonth = moment().month() + 1;
 
 let dayNumToWord = function(dayNum){
     switch(dayNum){
+        case(0):
+            return "Sun"
+            break;
         case(1):
             return "Mon"
             break;
@@ -30,23 +33,18 @@ let dayNumToWord = function(dayNum){
         case(6):
             return "Sat"
             break;
-        case(7):
-            return "Sun"
-            break;
     }
 }
 let displayDays = function(){
     let i = 1
-    let incrementID = 1
     let dayNum = currentDay
     while (i <= 7){
-        $(`#week-day${incrementID}`).text(dayNumToWord(dayNum))
-        i++
-        incrementID++
-        if (dayNum > 7) {
-            dayNum = 1
+        $(`#week-day${i}`).text(dayNumToWord(dayNum))
+        i++;
+        dayNum++;
+        if(dayNum > 6){
+            dayNum = 0;
         }
-        dayNum++
     }
 }
 let displayDates = function(){
