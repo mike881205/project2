@@ -21,10 +21,10 @@ The app will compare your results with your friends and give you a list of event
 
 
 # Developers
-[MIKE ROBERTS](https://github.com/mike881205)
-[MATT COLSON](https://github.com/MC180G)
-[SAM NEE](https://github.com/thesamnee)
-[NICK MARTELLO](https://github.com/nickmartello)
+* [MIKE ROBERTS](https://github.com/mike881205)
+* [MATT COLSON](https://github.com/MC180G)
+* [SAM NEE](https://github.com/thesamnee)
+* [NICK MARTELLO](https://github.com/nickmartello)
 
 
 
