@@ -17,7 +17,7 @@ module.exports = function (app) {
   app.get("/api/availability/:id", function(req, res) {
     db.Availability.findOne({
       where: {
-        id: req.params.id
+        UserId: req.params.id
       },
     }).then(function(dbAvailability) {
       res.json(dbAvailability);

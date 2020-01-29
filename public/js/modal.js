@@ -58,149 +58,258 @@ let finalComparison = []
 
 $(".loginSubmit").on("click", function (event) {
   event.preventDefault();
-  // Set the current days and dates
   currentDays = []
-  dayNames();
   currentDates = []
+  dayNames();
   dayDates();
-  // If the user doesn't fill out all forms, alert, and reload the page
-  if (!memberInput.val().trim().trim() || !memPassInput.val().trim().trim()) {
-    alert("Please enter your Name AND Password")
-    return location.reload()
-  }
-  // Define member object for ajax calls
+
   let member = {
     user: memberInput.val().trim(),
     password: memPassInput.val().trim(),
   };
-  // Call the validate member function with the current member as the paramater
-  validateMember(member)
-});
 
-function validateMember(member) {
-  console.log(member)
-  // Get all users
-  $.get("/api/users")
-    .then(function (data) {
-      console.log(data)
-      // If data exists for users
+  //Empty Out the availability arrays
+  let memberAvailability = [];
+  let otherUsersAvailability = [];
+  let finalComparison = []
+
+  // If there are no user inputs
+  if (!memberInput.val().trim().trim() || !memPassInput.val().trim().trim()) {
+    alert("Please enter your Name AND Password")
+    return location.reload()
+  }
+  else {
+
+    // Get all available users
+    $.get("/api/users").then(function (data) {
+      // If there are users in the data base
       if (data.length > 0) {
+
+        //===========================
+        // Verify the member's Info
+        //===========================
+
+        // Loop through all user data
         for (let i = 0; i < data.length; i++) {
-          // If both the name input and password input have a match in the database
+          // If the member's name and password have matches in the db
           if (member.user === data[i].user && member.password === data[i].password) {
-            // Set the logged in memberId
+            // Assign the member's user ID to a variable
             let memberId = data[i].id;
+
+            // Clear local storage and store the memberID
             localStorage.clear();
-            localStorage.setItem("member Id", memberId);
-            // Call the function to retrieve availabilities for comparison
-            getMemAvail(memberId);
+            localStorage.setItem("memberId", memberId);
             alert("Welcome Back!");
+
+            //===================================================
+            // Get the availability of the member who logged in
+            //===================================================
+
+            $.get("/api/availability/" + memberId).then(function (memAvailData) {
+              //Push the member's availability to the memberAvailability array
+              memberAvailability.push(
+                memAvailData.day1,
+                memAvailData.day2,
+                memAvailData.day3,
+                memAvailData.day4,
+                memAvailData.day5,
+                memAvailData.day6,
+                memAvailData.day7
+              )
+              console.log(memberAvailability)
+
+              //==========================================
+              // Get the availability of all other users
+              //==========================================
+
+              // Get all user availability
+              $.get("/api/availability/").then(function (otherUsers) {
+                // Loop through the data
+                for (let i = 0; i < otherUsers.length; i++) {
+                  // If the memberId doesn't not equal any other UserId's
+                  if (memberId !== otherUsers[i].UserId) {
+
+                    // Create the otherUserInfo object
+                    let otherUserInfo = {};
+
+                    // Set the object key/value pairs
+                    // ID
+                    otherUserInfo.Id = otherUsers[i].UserId
+                    // Schedule
+                    otherUserInfo.schedule = [
+                      otherUsers[i].day1,
+                      otherUsers[i].day2,
+                      otherUsers[i].day3,
+                      otherUsers[i].day4,
+                      otherUsers[i].day5,
+                      otherUsers[i].day6,
+                      otherUsers[i].day7,
+                    ]
+                    // Push the otherUserInfo object to the otherUsersAvailability array
+                    otherUsersAvailability.push(otherUserInfo)
+                  }
+                }
+                console.log(otherUsersAvailability)
+
+                //============================================================
+                // Compare the member's availability against all other users
+                //============================================================
+
+                // Loop through all of the other users
+                for (let i = 0; i < otherUsersAvailability.length; i++) {
+                  // Loop through the availability of the other users and compare them to the member's availability
+                  for (let j = 0; j < 7; j++) {
+                    // If the the member is available on a specific day and another user is available on the same day
+                    if (memberAvailability[j] === true && memberAvailability[j] === otherUsersAvailability[i].schedule[j]) {
+
+                      let otherUserID = otherUsersAvailability[i].Id
+                      let day = currentDays[j]
+                      let otherUserObject = {}
+
+                      $.get("/api/users/").then(function (otherUserData) {
+
+                        for (let i = 0; i < otherUserData.length; i++) {
+
+                          if (otherUserID === otherUserData[i].id) {
+
+                            otherUserObject.name = otherUserData[i].user
+
+                          }
+
+                        }
+
+                      })
+
+                      otherUserObject.freeDay = day
+
+                      finalComparison.push(otherUserObject)
+
+                    }
+
+                  }
+
+                }
+
+                console.log(finalComparison[3])
+
+              })
+
+            });
+
             return
-            // If no user name or pass word matches, alert the user  
-          } else if (i === (data.length - 1) && (member.user !== data[i].user || member.password !== data[i].password)) {
+          }
+
+          else if (i === (data.length - 1) && (member.user !== data[i].user || member.password !== data[i].password)) {
+
             alert("No users found. Please try again, or register.")
             return location.reload()
+
           }
         }
-        // If not data exists alert the user
-      } else {
-        alert("No users found. Please try again, or register.")
+      }
+
+      else {
+
+        alert("No Users Found, Please Register")
         return location.reload()
+
       }
-    });
-}
+    })
+
+  }
+
+})
+
+// function getMemAvail(id) {
+
+//   let currentUserSchedule = []
+//   let otherUsers = []
+//   let availableFriendsData = []
+//   let otherUserID;
+//   let otherUserSchedule;
+
+//   // Get all availabilities
+//   $.ajax({
+//     method: "GET",
+//     url: "/api/availability/"
+//   }).then(function (memAvailData) {
+//     for (let i = 0; i < memAvailData.length; i++) {
+//       let memAvailData = memAvailData[i]
+//       // If the member id equals a user info id
+//       if (id === memAvailData.UserId) {
+//         // Set the schedule for the logged in user
+//         currentUserSchedule.push(
+//           memAvailData.day1,
+//           memAvailData.day2,
+//           memAvailData.day3,
+//           memAvailData.day4,
+//           memAvailData.day5,
+//           memAvailData.day6,
+//           memAvailData.day7
+//         )
+//         // Push all other user info to another array
+//       } else {
+//         otherUsers.push(memAvailData)
+//       }
+//     }
+//     // Going through each of the other members info....
+//     for (let i = 0; i < otherUsers.length; i++) {
+//       // Set the user ID and schedule for each other member
+//       otherUserID = otherUsers[i].UserId
+//       otherUserSchedule = [
+//         otherUsers[i].day1,
+//         otherUsers[i].day2,
+//         otherUsers[i].day3,
+//         otherUsers[i].day4,
+//         otherUsers[i].day5,
+//         otherUsers[i].day6,
+//         otherUsers[i].day7,
+//       ]
+//       // Call the function to compare the availabilities
+//       compareAvail(currentUserSchedule, otherUserSchedule, availableFriendsData, otherUserID)
+//     }
+
+//     // See the final results
+//     console.log("Available Friends (expand to view): ")
+//     console.log(availableFriendsData)
+
+//   });
+// }
 
 
 
-function getMemAvail(id) {
+// function compareAvail(Sched1, Sched2, arr, id) {
 
-  let currentUserSchedule = []
-  let otherUsersInfo = []
-  let availableFriendsData = []
-  let availableFriends = []
-  let otherUserID;
-  let otherUserSchedule;
+//   let otherUserName;
+//   finalComparison = []
 
-  // Get all availabilities
-  $.ajax({
-    method: "GET",
-    url: "/api/availability/"
-  }).then(function (availabilityData) {
-    for (let i = 0; i < availabilityData.length; i++) {
-      let userInfo = availabilityData[i]
-      // If the member id equals a user info id
-      if (id === userInfo.UserId) {
-        // Set the schedule for the logged in user
-        currentUserSchedule.push(
-          userInfo.day1,
-          userInfo.day2,
-          userInfo.day3,
-          userInfo.day4,
-          userInfo.day5,
-          userInfo.day6,
-          userInfo.day7
-        )
-        // Push all other user info to another array
-      } else {
-        otherUsersInfo.push(userInfo)
-      }
-    }
-    // Going through each of the other members info....
-    for (let i = 0; i < otherUsersInfo.length; i++) {
-      // Set the user ID and schedule for each other member
-      otherUserID = otherUsersInfo[i].UserId
-      otherUserSchedule = [
-        otherUsersInfo[i].day1,
-        otherUsersInfo[i].day2,
-        otherUsersInfo[i].day3,
-        otherUsersInfo[i].day4,
-        otherUsersInfo[i].day5,
-        otherUsersInfo[i].day6,
-        otherUsersInfo[i].day7,
-      ]
-      // Call the function to compare the availabilities
-      compareAvail(currentUserSchedule, otherUserSchedule, availableFriendsData, otherUserID)
-    }
-
-    // See the final results
-    console.log("Available Friends (expand to view): ")
-    console.log(availableFriendsData)
-
-  });
-}
-
-function compareAvail(Sched1, Sched2, arr, id) {
-
-  let otherUserName;
-  finalComparison = []
-
-  // Get list of all users
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).then(function (data) {
-    for (let i = 0; i < data.length; i++) {
-      // If the 'otherUserID' equals one of the user ID's
-      if (id === data[i].id) {
-        // Save the matching user name
-        otherUserName = data[i].user
-      }
-    }
-    // Going through both the logged in user's schedule and the other user's schedule
-    for (let i = 0; i < 7; i++) {
-      availableInfo = {}
-      // If the first schedule instance is true and equal to the same instance from the other schedule
-      if (Sched1[i] === true && Sched1[i] === Sched2[i]) {
-        // Set the values for the available info Object
-        availableInfo.name = otherUserName
-        availableInfo.day = currentDays[i]
-        availableInfo.date = currentDates[i]
-        // Push the object to the available friends array
-        arr.push(availableInfo)
-      }
-    }
-  })
-}
+//   // Get list of all users
+//   $.ajax({
+//     method: "GET",
+//     url: "/api/users"
+//   }).then(function (data) {
+//     for (let i = 0; i < data.length; i++) {
+//       // If the 'otherUserID' equals one of the user ID's
+//       if (id === data[i].id) {
+//         // Save the matching user name
+//         otherUserName = data[i].user
+//       }
+//     }
+//     // Going through both the logged in user's schedule and the other user's schedule
+//     for (let i = 0; i < 7; i++) {
+//       availableInfo = {}
+//       // If the first schedule instance is true and equal to the same instance from the other schedule
+//       if (Sched1[i] === true && Sched1[i] === Sched2[i]) {
+//         // Set the values for the available info Object
+//         availableInfo.name = otherUserName
+//         availableInfo.day = currentDays[i]
+//         availableInfo.date = currentDates[i]
+//         // Push the object to the available friends array
+//         arr.push(availableInfo)
+//       }
+//     }
+//   })
+// }
 
 // function freeToday(arr){
 //   for(let i=0; i<=arr.length; i++){
